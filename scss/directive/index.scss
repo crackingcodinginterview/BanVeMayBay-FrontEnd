@@ -1,0 +1,48 @@
+.filter-header {
+  background: #2b303d;
+  height: 70px;
+}
+
+.filter-header .filter-zone {
+  height: 100%;
+  float: left;
+  text-align: center;
+  border-left: solid 1px #414551;
+  border-right: solid 1px #414551;
+}
+
+.filter-header .filter-place {
+  margin-left: 160px;
+}
+
+.filter-header .filter-zone .filter-places {
+  float: left;
+  margin-top: 10px;
+}
+
+.filter-header .filter-zone .filter-place-from {
+  margin-right: 10px;
+  padding-left: 10px;
+}
+
+.filter-header .filter-zone .filter-place-to {
+  padding-right: 10px;
+}
+
+.filter-font {
+  color: #ffd600;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.font-color-white {
+  color: #fff;
+}
+
+.filter-arrow {
+  float: left;
+  margin-top: 20px;
+  margin-right: 10px;
+  color: #ffd600;
+  font-size: 20px;
+}
