@@ -7,8 +7,15 @@ require.config({
         text: 'bower_components/requirejs-plugins/lib/text',
         async: 'bower_components/requirejs-plugins/src/async',
 
-        angular: 'empty:',
-        uiRouter: 'empty:'
+        'angular': 'empty:',
+        'angularAnimate': 'empty:',
+        'angularSanitize': 'empty:',
+        'lodash': 'empty:',
+
+        'uiRouter': 'empty:',
+        'uiSelect': 'empty:',
+        'ui.bootstrap': 'empty:',
+        'ui.bootstrap.datetimepicker': 'empty:'
     },
 
     shim: {},
