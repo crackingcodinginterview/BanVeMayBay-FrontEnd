@@ -3,5 +3,17 @@
 @import "./variables";
 @import "./style";
 
+$fa-font-path: '../bower_components/components-font-awesome/fonts/';
+$icon-font-path: '../bower_components/bootstrap-sass/assets/fonts/bootstrap/';
+
+@import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../bower_components/angular-bootstrap/ui-bootstrap-csp.css";
+@import '../bower_components/select2/dist/css/select2.css';
+@import '../bower_components/selectize/dist/css/selectize.default.css';
+@import "../bower_components/angular-ui-select/dist/select.css";
+@import "../bower_components/components-font-awesome/scss/font-awesome";
+
 @import "./directive/index";
+@import "./directive/datetimePicker";
 @import "./page/index";
+

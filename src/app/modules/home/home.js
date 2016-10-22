@@ -1,15 +1,20 @@
 define(function(require){
     'use strict';
 
-    var angular = require('angular');
-    var module = angular.module('app.home', []);
-    var template = require('text!./templates/home.html');
+    var angular = require('angular'),
+        homeController = require('./controllers/list'),
 
-    run.$inject = ['$templateCache'];
-    function run($templateCache){
-        $templateCache.put('home/templates/home.html', template);
-    }
-    module.run(run);
+        homeContentTpl = require('text!./templates/home.html');
+
+    var module = angular.module('app.home', []);
+
+    module.run([
+        '$templateCache',
+    function ($templateCache) {
+        $templateCache.put('home/templates/home.html', homeContentTpl);
+    }]);
+
+    module.controller('homeController', homeController);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider){
@@ -17,7 +22,9 @@ define(function(require){
             url: '/',
             views: {
                 'main': {
-                    templateUrl: 'home/templates/home.html'
+                    templateUrl: 'home/templates/home.html',
+                    controller: homeController,
+                    controllerAs: 'vm'
                 }
             }
         });
