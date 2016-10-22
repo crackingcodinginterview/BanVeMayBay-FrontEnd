@@ -1,8 +1,4 @@
 <div id="header" class="header page-section">
-
-    <a class="nav-target" data-full-title="Flight Search" data-icon-font="icon-flight" data-short-title="Search"
-       name="search"></a>
-
     <header>
         <!--Header-->
         <div id="page-header-placeholder">
@@ -49,7 +45,7 @@
         </li>
     </ul>
 
-    <form name="vm.searchForm" class="form-search" ng-init="vm.init()">
+    <form name="vm.searchForm" id="searchForm" class="form-search" ng-init="vm.init()">
         <section class="product-forms">
             <div class="content-container show" id="search-form">
 
@@ -143,18 +139,11 @@
                         </div>
                     </div>
 
-                    <!--<div class="group group-tripType clearfix">-->
-                    <!--<div class="field field-checkbox field-tripType">-->
-                    <!--<div class="btn-group">-->
-                    <!--<label class="btn btn-default" ng-model="vm.modeWay" uib-btn-radio="'Return'">Return</label>-->
-                    <!--<label class="btn btn-default" ng-model="vm.modeWay" uib-btn-radio="'Oneway'">Oneway</label>-->
-                    <!--</div>-->
-                    <!--</div>-->
-                    <!--</div>-->
-
                     <div class="group group-buttons clearfix">
-                        <a length="0" class="cfui-button button-search touch-rollover" data-bind="click:submit"
-                           href="#"><span class="inner"><span class="text">Search flights</span></span></a>
+                        <button type="submit" class="btn btn-black button-search" form="searchForm"
+
+                                ng-click="vm.submitForm()">Search flights
+                        </button>
                     </div>
                 </form>
             </div>

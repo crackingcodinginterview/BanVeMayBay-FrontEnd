@@ -8,7 +8,7 @@ define(function(require){
             enabled: false,
             requireBase: false
         });
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/search');
     }
 
     module.config(appConfig);

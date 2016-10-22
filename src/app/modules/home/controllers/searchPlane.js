@@ -3,7 +3,12 @@ define(function (require) {
     var angular = require('angular');
     var controller = [
         '$scope',
-        function ($scope) {
+        '$http',
+        '$location',
+
+        function ($scope,
+                  $http,
+                  $location) {
             var vm = this;
 
             /**
@@ -13,6 +18,7 @@ define(function (require) {
                 for (var i = 1; i <= 100; i++) {
                     vm.amountSeatData.push(i);
                 }
+                // vm.placeData = $http.get('http://banvemaybay.apphb.com/api/airports');
             }
 
             /**
@@ -22,6 +28,13 @@ define(function (require) {
              */
             function openCalendar() {
                 vm.openDatetimePicker = !vm.openDatetimePicker;
+            }
+
+            /**
+             * submit form
+             */
+            function submitForm() {
+                $location.path('/list');
             }
 
             vm.people = [
@@ -59,6 +72,7 @@ define(function (require) {
             vm.openDatetimePicker = false;
 
             vm.init = init;
+            vm.submitForm = submitForm;
             vm.openCalendar = openCalendar;
         }];
     return controller;
