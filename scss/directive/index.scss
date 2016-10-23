@@ -4,20 +4,17 @@
 }
 
 .filter-header .filter-zone {
-  height: 100%;
-  float: left;
+  margin: auto;
   text-align: center;
   border-left: solid 1px #414551;
   border-right: solid 1px #414551;
 }
 
-.filter-header .filter-place {
-  margin-left: 160px;
-}
-
 .filter-header .filter-zone .filter-places {
   float: left;
-  margin-top: 10px;
+  padding-top: 10px;
+  height: 70px;
+
 }
 
 .filter-header .filter-zone .filter-place-from {
@@ -26,6 +23,12 @@
 }
 
 .filter-header .filter-zone .filter-place-to {
+  padding-right: 10px;
+}
+
+.border-left {
+  border-left: solid 1px #414551;
+  padding-left: 10px;
   padding-right: 10px;
 }
 
@@ -45,4 +48,107 @@
   margin-right: 10px;
   color: #ffd600;
   font-size: 20px;
+}
+
+.form-list, .form-list-header {
+  background: orange;
+}
+
+.form-list {
+  background-position: -0px -0px;
+  margin: auto;
+  margin-top: 20px;
+  width: 50%;
+  height: 33px;
+}
+
+.form-list .form-list-header {
+  background-position: -0px -0px;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.elm-right {
+  float: right;
+}
+
+.elm-left {
+  float: left;
+}
+
+.form-list-header .price {
+  float: left;
+  border-right: solid 1px #ffd600;
+  font-size: 21px;
+  font-weight: 500;
+  text-align: center;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.form-list .place-from {
+  background: #ffffff;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  padding-top: 13px;
+  clear:none;
+}
+
+.form-list .sample {
+  -webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  width: 10%;
+  height: 100%;
+  background: #ffffff;
+  float: left;
+  clear:none;
+}
+
+.form-list .sample1 {
+  -webkit-clip-path: polygon(60% 0, 100% 50%, 60% 100%, 0% 100%, 40% 50%, 0% 0%);
+  clip-path: polygon(60% 0, 100% 50%, 60% 100%, 0% 100%, 40% 50%, 0% 0%);
+  width: 25%;
+  height: 101%;
+  background: #ffffff;
+  float: left;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  clear:none;
+}
+
+.form-list .sample2 {
+  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%, 100% 50%, 0% 0%);
+  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%, 100% 50%, 0% 0%);
+  width: 10%;
+  height: 101%;
+  background: #ffffff;
+  float: left;
+  clear:none;
+}
+
+.form-list .place-to {
+  background: #ffffff;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  padding-top: 13px;
+  clear:none;
+}
+
+.form-list .form-info {
+  width: 100%;
+  height: 69%;
+}
+
+.form-group {
+  color: black !important;
+}
+
+.modal-border {
+  border: solid 1px whitesmoke;
 }

@@ -3108,12 +3108,12 @@ b, strong {
 
 #page-header-placeholder {
   border-bottom: solid 1px rgba(0, 0, 0, .1);
-  height: 54px
+  //height: 54px
 }
 
 @media only screen and (min-width: 720px) {
   #page-header-placeholder {
-    height: 60px
+    //height: 60px
   }
 }
 
@@ -4199,6 +4199,7 @@ b, strong {
 }
 
 .page-section {
+  height: 100vh;
   width: 100%;
   position: relative;
   padding: 0;

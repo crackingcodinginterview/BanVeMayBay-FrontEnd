@@ -16,7 +16,8 @@
     "angular-bootstrap": "~1.2.3",
     "bootstrap-ui-datetime-picker": "^2.4.3",
     "components-font-awesome": "~4.5.0",
-    "lodash": "^4.16.4"
+    "lodash": "^4.16.4",
+    "angular-spinner": "^0.8.1"
   },
   "resolutions": {
     "angular": "1.4.8",
