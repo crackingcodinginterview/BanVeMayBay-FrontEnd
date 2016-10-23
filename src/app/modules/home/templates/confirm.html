@@ -62,7 +62,13 @@
         </div>
 
         <div ng-if="vm.list">
-            <div class="form-control form-confirm">
+            <div class="form-control form-confirm" ng-if="false">
+                <span class="text-highlight">Đặt chỗ thất bại do không đủ số lượng ghế</span><br/>
+                <span class="text-highlight">Xin quý khách vui lòng kiểm tra lại</span><br/>
+                <a href="#" class="btn btn-default elm-left"><span class="glyphicon glyphicon-chevron-left"></span> Trở
+                    về</a>
+            </div>
+            <div class="form-control form-confirm" ng-if="true">
                 <span>Chúc mừng quý khách đã đặt chỗ thành công</span><br/>
                 <span>Mã đặt chỗ: <span class="text-highlight" ng-bind="'13CTT3'"></span></span><br/>
                 <a class="btn btn-primary btn-success elm-right" ng-click="vm.showDetail()"><span

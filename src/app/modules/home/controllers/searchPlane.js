@@ -76,16 +76,19 @@ define(function (require) {
             ];
 
             vm.search = {
-              'placeFrom': '',
-              'placeTo': '',
-              'datetimePlane': '',
-              'rankId': '',
-              'priceId': '',
-              'amount': ''
+                'placeFrom': '',
+                'placeTo': '',
+                'datetimePlane': '',
+                'rankId': '',
+                'priceId': '',
+                'amount': ''
             };
 
             vm.amountSeatData = [];
             vm.openDatetimePicker = false;
+            vm.datepickerOptions = {
+                minDate: new Date()
+            };
 
             vm.init = init;
             vm.submitForm = submitForm;

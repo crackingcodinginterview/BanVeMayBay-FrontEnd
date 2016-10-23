@@ -103,6 +103,7 @@
                                     <input type="text" name="datetime" class="form-control"
                                            datetime-picker="MM/dd/yyyy HH:mm"
                                            ng-model="vm.search.datetimePlane" is-open="vm.openDatetimePicker"
+                                           datepicker-options="vm.datepickerOptions"
                                            placeholder="Chọn thời gian" required/>
                                     <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="vm.openCalendar()">
@@ -153,9 +154,8 @@
                             </div>
                         </div>
 
-                        <div class="group group-buttons clearfix">
-                            <button type="submit" class="btn btn-black button-search" form="searchForm"
-
+                        <div class="group group-buttons">
+                            <button type="submit" class="btn btn-success btn-black button-search" form="searchForm"
                                     ng-click="vm.submitForm()">Search flights
                             </button>
                         </div>
