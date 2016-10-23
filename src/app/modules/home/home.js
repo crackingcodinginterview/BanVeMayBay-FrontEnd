@@ -5,7 +5,7 @@ define(function (require) {
         searchPlaneController = require('./controllers/searchPlane'),
         listPlaneController = require('./controllers/listPlane'),
         bookingController = require('./controllers/booking'),
-        payController = require('./controllers/pay'),
+        searchInfoController = require('./controllers/searchInfo'),
         confirmController = require('./controllers/confirm'),
 
         pickPlaneController = require('./controllers/modal/pickPlane'),
@@ -15,7 +15,7 @@ define(function (require) {
         searchPlaneTemplate = require('text!./templates/searchPlane.html'),
         listPlaneTemplate = require('text!./templates/listPlane.html'),
         bookingTemplate = require('text!./templates/booking.html'),
-        payTemplate = require('text!./templates/pay.html'),
+        searchInfoTemplate = require('text!./templates/searchInfo.html'),
         confirmTemplate = require('text!./templates/confirm.html'),
 
         pickPlaneTemplate = require('text!./templates/modal/pickPlane.html');
@@ -30,7 +30,7 @@ define(function (require) {
             $templateCache.put('home/templates/searchPlane.html', searchPlaneTemplate);
             $templateCache.put('home/templates/listPlane.html', listPlaneTemplate);
             $templateCache.put('home/templates/booking.html', bookingTemplate);
-            $templateCache.put('home/templates/pay.html', payTemplate);
+            $templateCache.put('home/templates/searchInfo.html', searchInfoTemplate);
             $templateCache.put('home/templates/confirm.html', confirmTemplate);
             $templateCache.put('home/templates/modal/pickPlane.html', pickPlaneTemplate);
             // $templateCache.put('home/templates/planeDetail.html', planeDetailContentTpl);
@@ -39,7 +39,7 @@ define(function (require) {
     module.controller('searchPlaneController', searchPlaneController);
     module.controller('listPlaneController', listPlaneController);
     module.controller('bookingController', bookingController);
-    module.controller('payController', payController);
+    module.controller('payController', searchInfoController);
     module.controller('confirmController', confirmController);
     module.controller('pickPlaneController', pickPlaneController);
 
@@ -50,6 +50,9 @@ define(function (require) {
         $stateProvider
             .state('base.search', {
                 url: '/search',
+                params: {
+                    param: null
+                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/searchPlane.html',
@@ -60,6 +63,9 @@ define(function (require) {
             })
             .state('base.list', {
                 url: '/list',
+                params: {
+                    param: null
+                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/listPlane.html',
@@ -73,17 +79,17 @@ define(function (require) {
                 views: {
                     'main': {
                         templateUrl: 'home/templates/booking.html',
-                        controller: payController,
+                        controller: bookingController,
                         controllerAs: 'vm'
                     }
                 }
             })
-            .state('base.pay', {
-                url: '/pay',
+            .state('base.searchInfo', {
+                url: '/searchInfo',
                 views: {
                     'main': {
-                        templateUrl: 'home/templates/pay.html',
-                        controller: searchPlaneController,
+                        templateUrl: 'home/templates/searchInfo.html',
+                        controller: searchInfoController,
                         controllerAs: 'vm'
                     }
                 }

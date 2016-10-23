@@ -5,47 +5,51 @@
                 <span aria-hidden="true">×</span>
             </button>
             <h3 class="modal-title" style="color: black">
-                <span>Plane Details</span>
+                <span>Thông tin chi tiết chuyến bay</span>
             </h3>
         </div>
         <div class="modal-body">
             <div class="row">
                 <div class="form-group">
+                    <div class="col-md-12" ng-if="vm.selectedPlane.idBook">
+                        <label class="col-md-3 control-label">Mã đặt chỗ</label>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.idBook"></span>
+                    </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Mã chuyến bay</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.id"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.id"></span>
                     </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Nơi đi</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.placeFrom"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.placeFrom"></span>
                     </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Nơi đến</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.placeTo"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.placeTo"></span>
                     </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Ngày đi</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.date"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.date"></span>
                         <label class="col-md-3 control-label">Giờ đi</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.time"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.time"></span>
                     </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Hạng vé</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.rank"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.rank"></span>
                         <label class="col-md-3 control-label">Mức giá</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.price"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.price"></span>
                     </div>
                     <div class="col-md-12">
                         <label class="col-md-3 control-label">Tổng lượng ghế</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.totalSeat"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.totalSeat"></span>
                         <label class="col-md-3 control-label text-danger">Số ghế còn lại</label>
-                        <span class="col-md-3 text-danger" ng-bind="vm.pickedPlane.amountSeat"></span>
+                        <span class="col-md-3 text-danger" ng-bind="vm.selectedPlane.amountSeat"></span>
                     </div>
                     <div class="col-md-12">
                         <span class="col-md-3"></span>
                         <span class="col-md-3"></span>
                         <label class="col-md-3 control-label">Giá vé</label>
-                        <span class="col-md-3" ng-bind="vm.pickedPlane.cost + ' VND'"></span>
+                        <span class="col-md-3" ng-bind="vm.selectedPlane.cost + ' VND'"></span>
                     </div>
                 </div>
             </div>
@@ -54,7 +58,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3">
-                        <ui-select ng-model="vm.user.amountSeat" ng-change="vm.createUser()" theme="bootstrap" name="amount" required>
+                        <ui-select ng-disabled="vm.selectedPlane.disabledEdit" ng-model="vm.selectedPlane.user.amountSeat" ng-change="vm.createUser()" theme="bootstrap"
+                                   name="amount" required>
                             <ui-select-match allow-clear="true" data-placeholder="Số lượng ghế" required>
                                 {{$select.selected}}
                             </ui-select-match>
@@ -64,23 +69,25 @@
                         </ui-select>
                     </div>
                     <span class="col-md-3"></span>
-                    <label class="col-md-3 control-label">Tổng phí</label>
-                    <mark class="col-md-3" ng-bind="vm.user.totalPrice + ' VND'" ng-if="vm.user.amountSeat"></mark>
+                    <div class="col-md-6">
+                        <label class="col-md-6 control-label" style="padding-left: 0px">Tổng phí</label>
+                        <mark class="col-md-6" ng-bind="vm.selectedPlane.user.totalPrice + ' VND'" ng-if="vm.selectedPlane.user.amountSeat"></mark>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="modal-body modal-border" ng-if="vm.user.amountSeat" ng-repeat="user in vm.users">
+        <div class="modal-body modal-border" ng-if="vm.selectedPlane.user.amountSeat">
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-12">
                         <div class="col-md-4">
-                            <input type="text" class="form-control" ng-model="user.firstName" placeholder="Họ">
+                            <input type="text" class="form-control" ng-model="vm.selectedPlane.user.firstName" placeholder="Họ" required>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" ng-model="user.lastName" placeholder="Tên">
+                            <input type="text" class="form-control" ng-model="vm.selectedPlane.user.lastName" placeholder="Tên" required>
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" ng-model="user.nickName" placeholder="Danh xưng">
+                            <input type="text" class="form-control" ng-model="vm.selectedPlane.user.nickName" placeholder="Danh xưng">
                         </div>
                     </div>
                 </div>
@@ -88,7 +95,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-default btn-sm" type="button" ng-click="vm.close()">Đóng</button>
-            <button class="btn btn-success btn-sm" type="submit" ng-disabled="$form.$invalid || $form.$submitted">
+            <button class="btn btn-success btn-sm" type="submit" ng-disabled="$form.$invalid || $form.$submitted" ng-hide="vm.selectedPlane.disabledEdit">
                 Đặt vé
             </button>
         </div>

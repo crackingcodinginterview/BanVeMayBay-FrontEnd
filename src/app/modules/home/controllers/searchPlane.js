@@ -4,17 +4,23 @@ define(function (require) {
     var controller = [
         '$scope',
         '$http',
-        '$location',
+        '$state',
+        '$stateParams',
 
         function ($scope,
                   $http,
-                  $location) {
+                  $state,
+                  $stateParams) {
             var vm = this;
 
             /**
              * init
              */
             function init() {
+                debugger;
+                if ($stateParams.param) {
+                    vm.search = $stateParams.param;
+                }
                 for (var i = 1; i <= 100; i++) {
                     vm.amountSeatData.push(i);
                 }
@@ -34,7 +40,7 @@ define(function (require) {
              * submit form
              */
             function submitForm() {
-                $location.path('/list');
+                $state.go('base.list', {param: vm.search});
             }
 
             vm.people = [
@@ -68,6 +74,16 @@ define(function (require) {
                     'id': 'G'
                 }
             ];
+
+            vm.search = {
+              'placeFrom': '',
+              'placeTo': '',
+              'datetimePlane': '',
+              'rankId': '',
+              'priceId': '',
+              'amount': ''
+            };
+
             vm.amountSeatData = [];
             vm.openDatetimePicker = false;
 
