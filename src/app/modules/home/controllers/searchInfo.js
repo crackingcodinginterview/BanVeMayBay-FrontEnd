@@ -4,28 +4,14 @@ define(function (require) {
     var controller = [
         '$scope',
         '$http',
-        '$location',
-        '$timeout',
         '$uibModal',
 
         function ($scope,
                   $http,
-                  $location,
-                  $timeout,
                   $uibModal) {
             var vm = this;
 
-            /**
-             * init
-             */
-            function init() {
-                $timeout(function () {
-                    vm.spinner = false;
-                    vm.list = true;
-                }, 2000)
-            }
-
-            function showDetail() {
+            function searchInfo() {
                 var row = {};
                 row.idBook = "13CTT3";
                 row.disabledEdit = true;
@@ -42,11 +28,7 @@ define(function (require) {
                 });
             }
 
-            vm.spinner = true;
-            vm.list = false;
-
-            vm.init = init;
-            vm.showDetail = showDetail;
+            vm.searchInfo = searchInfo;
         }];
     return controller;
 });

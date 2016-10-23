@@ -1,6 +1,18 @@
-.filter-header {
-  background: #2b303d;
-  height: 70px;
+@media only screen and (max-width: 600px) {
+  .filter-header {
+    background: #2b303d;
+    height: 70px;
+    margin-top: 50px;
+    zoom: 60%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .filter-header {
+    background: #2b303d;
+    height: 70px;
+    margin-top: 50px;
+  }
 }
 
 .filter-header .filter-zone {
@@ -51,15 +63,27 @@
 }
 
 .form-list, .form-list-header {
-  background: orange;
 }
 
-.form-list {
-  background-position: -0px -0px;
-  margin: auto;
-  margin-top: 20px;
-  width: 50%;
-  height: 33px;
+@media only screen and (max-width: 900px) {
+  .form-list {
+    background-position: -0px -0px;
+    margin: auto;
+    margin-top: 20px;
+    width: 450px;
+    height: 45px;
+    zoom: 70%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .form-list {
+    background-position: -0px -0px;
+    margin: auto;
+    margin-top: 20px;
+    width: 45%;
+    height: 45px;
+  }
 }
 
 .form-list .form-list-header {
@@ -81,68 +105,11 @@
   float: left;
   border-right: solid 1px #ffd600;
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   height: 100%;
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.form-list .place-from {
-  background: #ffffff;
-  width: 25%;
-  height: 100%;
-  text-align: center;
-  float: left;
-  padding-top: 13px;
-  clear:none;
-}
-
-.form-list .sample {
-  -webkit-clip-path: polygon(0 0, 0% 100%, 100% 50%);
-  clip-path: polygon(0 0, 0% 100%, 100% 50%);
-  width: 10%;
-  height: 100%;
-  background: #ffffff;
-  float: left;
-  clear:none;
-}
-
-.form-list .sample1 {
-  -webkit-clip-path: polygon(60% 0, 100% 50%, 60% 100%, 0% 100%, 40% 50%, 0% 0%);
-  clip-path: polygon(60% 0, 100% 50%, 60% 100%, 0% 100%, 40% 50%, 0% 0%);
-  width: 25%;
-  height: 101%;
-  background: #ffffff;
-  float: left;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  clear:none;
-}
-
-.form-list .sample2 {
-  -webkit-clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%, 100% 50%, 0% 0%);
-  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0 100%, 100% 50%, 0% 0%);
-  width: 10%;
-  height: 101%;
-  background: #ffffff;
-  float: left;
-  clear:none;
-}
-
-.form-list .place-to {
-  background: #ffffff;
-  width: 25%;
-  height: 100%;
-  text-align: center;
-  float: left;
-  padding-top: 13px;
-  clear:none;
-}
-
-.form-list .form-info {
-  width: 100%;
-  height: 69%;
 }
 
 .form-group {
@@ -151,4 +118,88 @@
 
 .modal-border {
   border: solid 1px whitesmoke;
+}
+
+@media only screen and (min-width: 720px) {
+  .form-confirm {
+    margin-top: 50px !important;
+    margin: auto;
+    width: 50%;
+    height: 88px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .form-confirm {
+    margin-top: 50px !important;
+    margin: auto;
+    width: 300px;
+    height: 110px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.text-highlight {
+  color: red;
+}
+
+@media only screen and (min-width: 720px) {
+  .search-place {
+    width: 45.9375%;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .search-place {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .search-placeFrom {
+    float: left;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .search-placeTo {
+    float: right;
+  }
+}
+
+.icon-arrow-search {
+  margin-left: 13px;
+}
+
+.main {
+  background: #ffc300!important;
+  height: 100vh;
+}
+
+@media only screen and (max-width: 720px) {
+  .search-info {
+    margin: auto;
+    width: 300px;
+    margin-top: 50px;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .search-info {
+    margin: auto;
+    width: 30%;
+    margin-top: 50px;
+  }
+}
+
+.btn-search {
+  margin-top: 10px;
+  width: 100%;
 }

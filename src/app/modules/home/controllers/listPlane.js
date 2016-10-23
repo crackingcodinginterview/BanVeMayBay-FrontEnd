@@ -6,12 +6,25 @@ define(function (require) {
         '$http',
         '$location',
         '$uibModal',
+        '$timeout',
+        '$state',
+        '$stateParams',
 
         function ($scope,
                   $http,
                   $location,
-                  $uibModal) {
+                  $uibModal,
+                  $timeout,
+                  $state,
+                  $stateParams) {
             var vm = this;
+
+            function init() {
+                $timeout(function () {
+                    vm.spinner = false;
+                    vm.list = true;
+                }, 2000)
+            }
 
             function pickPlane(row) {
                 var modalInstance = $uibModal.open({
@@ -21,15 +34,19 @@ define(function (require) {
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        pickedPlane: row
+                        selectedPlane: row
                     }
                 });
 
                 modalInstance.result.then(function (resp) {
-                    $location.path('/list');
+                    $location.path('/confirm');
                 }, function () {
 
                 });
+            }
+
+            function editSearch() {
+                $state.go('base.search', {param: param});
             }
 
             vm.datetimePlane = new Date();
@@ -48,8 +65,14 @@ define(function (require) {
                     'price': 'E'
                 }
             ];
+            vm.spinner = true;
+            vm.list = false;
+            var param = $stateParams.param;
+            debugger;
 
+            vm.init = init;
             vm.pickPlane = pickPlane;
+            vm.editSearch = editSearch;
         }];
     return controller;
 });

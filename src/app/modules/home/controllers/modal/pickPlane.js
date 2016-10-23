@@ -4,10 +4,10 @@ define(function (require) {
     var _ = require('lodash');
     var controller = [
         '$uibModalInstance',
-        'pickedPlane',
+        'selectedPlane',
 
         function ($uibModalInstance,
-                  pickedPlane) {
+                  selectedPlane) {
             var vm = this;
 
             /**
@@ -26,38 +26,23 @@ define(function (require) {
                     return;
                 }
 
-                vm.customner = {
-                    'planeDetail': vm.pickedPlane,
-                    'userDetail': vm.users
-                }
-
-                $uibModalInstance.close(vm.customner);
+                $uibModalInstance.close(vm.selectedPlane);
             }
 
             /**
              * init
              */
             function init() {
-                for (var i = 1; i <= vm.pickedPlane.amountSeat; i++) {
+                for (var i = 1; i <= vm.selectedPlane.amountSeat; i++) {
                     vm.amountSeatData.push(i);
                 }
             }
 
             function createUser() {
-                vm.user.totalPrice = Number(vm.user.amountSeat) * Number(vm.pickedPlane.cost);
-                vm.users = [];
-                for (var i = 0; i < vm.user.amountSeat; i++) {
-                    vm.users.push(
-                        {
-                            'firstName': '',
-                            'lastName': '',
-                            'nickName': ''
-                        }
-                    );
-                }
+                vm.selectedPlane.user.totalPrice = Number(vm.selectedPlane.user.amountSeat) * Number(vm.selectedPlane.cost);
             }
 
-            vm.pickedPlane = angular.copy(pickedPlane);
+            vm.selectedPlane = angular.copy(selectedPlane);
             vm.amountSeatData = [];
 
             vm.close = close;
