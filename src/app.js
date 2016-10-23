@@ -2,6 +2,8 @@ define(function (require) {
     var angular = require('angular'),
         angularAnimate = require('angularAnimate'),
         angularSanitize = require('angularSanitize'),
+        spin = require('spin'),
+        angularSpinner = require('angularSpinner'),
         lodash = require('lodash'),
 
         appModule = require('./app/modules/index'),
@@ -16,6 +18,7 @@ define(function (require) {
     var module = angular.module('app', [
         'ngAnimate',
         'ngSanitize',
+        'angularSpinner',
 
         'ui.router',
         'ui.select',

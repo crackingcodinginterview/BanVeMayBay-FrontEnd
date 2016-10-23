@@ -9,6 +9,8 @@ require.config({
         angular: 'bower_components/angular/angular',
         angularAnimate: './bower_components/angular-animate/angular-animate',
         angularSanitize: './bower_components/angular-sanitize/angular-sanitize',
+        spin: './bower_components/spin.js/spin',
+        angularSpinner: './bower_components/angular-spinner/angular-spinner',
         lodash: './bower_components/lodash/dist/lodash',
 
         uiRouter: 'bower_components/angular-ui-router/release/angular-ui-router',
@@ -26,6 +28,12 @@ require.config({
             deps: ['angular']
         },
         'angularSanitize': {
+            deps: ['angular']
+        },
+        'spin': {
+            deps: ['angular']
+        },
+        'angularSpinner': {
             deps: ['angular']
         },
         'uiRouter': {
@@ -54,6 +62,7 @@ require.config({
         'angular',
         'ngAnimate',
         'ngSanitize',
+        'angularSpinner',
 
         'uiRouter',
         'uiSelect',

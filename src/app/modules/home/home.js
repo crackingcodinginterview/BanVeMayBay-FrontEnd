@@ -8,13 +8,17 @@ define(function (require) {
         payController = require('./controllers/pay'),
         confirmController = require('./controllers/confirm'),
 
+        pickPlaneController = require('./controllers/modal/pickPlane'),
+
         // planeDetailDirective = require('./controllers/planeDetail'),
 
         searchPlaneTemplate = require('text!./templates/searchPlane.html'),
         listPlaneTemplate = require('text!./templates/listPlane.html'),
         bookingTemplate = require('text!./templates/booking.html'),
         payTemplate = require('text!./templates/pay.html'),
-        confirmTemplate = require('text!./templates/confirm.html');
+        confirmTemplate = require('text!./templates/confirm.html'),
+
+        pickPlaneTemplate = require('text!./templates/modal/pickPlane.html');
 
     // planeDetailContentTpl = require('text!./templates/planeDetail.html');
 
@@ -28,6 +32,7 @@ define(function (require) {
             $templateCache.put('home/templates/booking.html', bookingTemplate);
             $templateCache.put('home/templates/pay.html', payTemplate);
             $templateCache.put('home/templates/confirm.html', confirmTemplate);
+            $templateCache.put('home/templates/modal/pickPlane.html', pickPlaneTemplate);
             // $templateCache.put('home/templates/planeDetail.html', planeDetailContentTpl);
         }]);
 
@@ -36,6 +41,7 @@ define(function (require) {
     module.controller('bookingController', bookingController);
     module.controller('payController', payController);
     module.controller('confirmController', confirmController);
+    module.controller('pickPlaneController', pickPlaneController);
 
     // module.directive('planeDetailDirective', planeDetailDirective);
 

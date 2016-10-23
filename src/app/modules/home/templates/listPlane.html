@@ -22,46 +22,16 @@
             <!--</div>-->
         </div>
 
-        <div class="form-group filter-header">
-            <div class="input-group filter-zone filter-place">
-                <span class="filter-places filter-place-from">
-                    <span class="filter-font">SGN</span><br/>
-                    <span class="font-color-white">Ho Chi Minh City</span>
-                </span>
-                <span class="filter-arrow">
-                    <i class="icon-left"></i>
-                    <i class="icon-right"></i>
-                </span>
-                <span class="filter-places filter-place-to">
-                    <span class="filter-font">SGN</span><br/>
-                    <span class="font-color-white">Ho Chi Minh City</span>
-                </span>
-            </div>
-            <div class="input-group filter-zone">
-                <span class="filter-places filter-place-from">
-                    <span class="filter-font">OUT</span><br/>
-                    <span class="font-color-white" ng-bind="vm.datetimePlane"></span>
-                </span>
-            </div>
-            <div class="input-group filter-zone">
-                <!--<label class="font-color-white">-->
-                    <!--<i class="icon-pencil filter-arrow"></i>-->
-                    <!--Modify search-->
-                <!--</label>-->
-            </div>
-        </div>
-
         <!--Logo-->
         <div id="header-container">
-            <!--<div class="logo-container" itemscope="" itemtype="http://schema.org/Organization">-->
-            <!--<a href="/" class="logo anim" itemprop="url" title="Cheapflights.com" aria-label="Cheap Flights">-->
-            <!--<span>Cheapflights</span><span class="plane"><span class="contrail"> </span></span>-->
-            <!--</a><span class="tag-line">Smart search. Made simple.</span>-->
-            <!--</div>-->
+            <div class="logo-container" itemscope="" itemtype="http://schema.org/Organization">
+                <a href="/" class="logo anim" itemprop="url" title="Cheapflights.com" aria-label="Cheap Flights">
+                    <span>Cheapflights</span><span class="plane"><span class="contrail"> </span></span>
+                </a><span class="tag-line">Smart search. Made simple.</span>
+            </div>
         </div>
 
     </header>
-
 
     <ul id="product-selector" data-hashnavigaton="True">
         <li class="product flights">
@@ -74,108 +44,54 @@
         </li>
     </ul>
 
-    <form name="vm.searchForm" id="searchForm" class="form-search" ng-init="vm.init()">
-        <section class="product-forms">
-            <div class="content-container show" id="search-form">
 
-                <form class="cf-search-form mode-full">
+    <div class="form-group filter-header">
+        <div class="input-group filter-zone">
+                <span class="filter-places filter-place-from">
+                    <span class="filter-font">SGN</span><br/>
+                    <span class="font-color-white">Ho Chi Minh City</span>
+                </span>
+            <span class="filter-arrow">
+                    <i class="icon-left"></i>
+                    <i class="icon-right"></i>
+                </span>
+            <span class="filter-places filter-place-to">
+                    <span class="filter-font">SGN</span><br/>
+                    <span class="font-color-white">Ho Chi Minh City</span>
+                </span>
+            <span class="filter-places border-left">
+                    <span class="filter-font">OUT</span><br/>
+                    <span class="font-color-white" ng-bind="vm.datetimePlane"></span>
+                </span>
+            <span class="filter-places border-left" style="padding-top: 23px">
+                    <span class="fa fa-pencil filter-font"></span>
+                    <a href="/" class="font-color-white">Modify Search</a>
+                </span>
+        </div>
+    </div>
 
-                    <div class="group group-route">
-                        <div class="field field-from populated" style="height: 100%"
-                             ng-class="{'has-error': (vm.searchForm.placeFrom.$invalid && vm.searchForm.placeFrom.$dirty)}">
+    <div ng-if="false">
+        <div style="position:relative;">
+            <span us-spinner="{top:'-100px', radius:30, width:8, length: 16}"></span>
+        </div>
+        <div style="text-align: center;margin-top: 200px;font-size: 20px; font-weight: 600">Đang tìm kiếm danh sách
+            chuyến bay ...
+        </div>
+    </div>
 
-                            <ui-select ng-model="vm.garmentId" theme="bootstrap" name="placeFrom" required>
-                                <ui-select-match allow-clear="true" data-placeholder="Sân bay đi">
-                                    {{$select.selected.name}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="garment.id as garment in vm.people | filter: $select.search">
-                                    <span ng-bind-html="garment.name | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-
-                        <div id="returnOneWayIndicator">
-                            <span class="icon-arrow"></span>
-                            <span class="icon-arrow reverse"></span>
-                        </div>
-
-                        <div class="field field-to populated" style="height: 100%"
-                             ng-class="{'has-error': (vm.searchForm.placeTo.$invalid && vm.searchForm.placeTo.$dirty)}">
-
-                            <ui-select ng-model="vm.garmentId" theme="bootstrap" name="placeTo" required>
-                                <ui-select-match allow-clear="true" data-placeholder="Sân bay đến">
-                                    {{$select.selected.name}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="garment.id as garment in vm.people | filter: $select.search">
-                                    <span ng-bind-html="garment.name | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-                    </div>
-
-                    <div class="group group-route">
-                        <div class="field field-datetime populated"
-                             ng-class="{'has-error': (vm.searchForm.datetime.$invalid && vm.searchForm.datetime.$dirty)}">
-
-                            <p class="input-group">
-                                <input type="text" name="datetime" class="form-control"
-                                       datetime-picker="MM/dd/yyyy HH:mm"
-                                       ng-model="vm.datetimePlane" is-open="vm.openDatetimePicker"
-                                       placeholder="Chọn thời gian" required/>
-                                <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="vm.openCalendar()">
-                                    <i class="fa fa-calendar"></i>
-                                 </button>
-                             </span>
-                            </p>
-                        </div>
-
-                        <div class="field field-rank populated"
-                             ng-class="{'has-error': (vm.searchForm.rank.$invalid && vm.searchForm.rank.$dirty)}">
-
-                            <ui-select ng-model="vm.rankId" name="rank" theme="bootstrap" required>
-                                <ui-select-match allow-clear="true" data-placeholder="Hạng vé">{{$select.selected.name}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="rank.id as rank in vm.rankData | filter: $select.search">
-                                    <span ng-bind-html="rank.name | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-
-                        <div class="field field-price populated"
-                             ng-class="{'has-error': (vm.searchForm.price.$invalid && vm.searchForm.price.$dirty)}">
-
-                            <ui-select ng-model="vm.priceId" theme="bootstrap" name="price" required>
-                                <ui-select-match allow-clear="true" data-placeholder="Mức giá">{{$select.selected.id}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="price.id as price in vm.priceData | filter: $select.search">
-                                    <span ng-bind-html="price.id | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-
-                        <div class="field field-amount-seat populated"
-                             ng-class="{'has-error': (vm.searchForm.amount.$invalid && vm.searchForm.amount.$dirty)}">
-
-                            <ui-select ng-model="vm.amountSeat" theme="bootstrap" name="amount" required>
-                                <ui-select-match allow-clear="true" data-placeholder="Số lượng ghế">
-                                    {{$select.selected}}
-                                </ui-select-match>
-                                <ui-select-choices repeat="amount in vm.amountSeatData | filter: $select.search">
-                                    <span ng-bind-html="amount | highlight: $select.search"></span>
-                                </ui-select-choices>
-                            </ui-select>
-                        </div>
-                    </div>
-
-                    <div class="group group-buttons clearfix">
-                        <button type="submit" class="btn btn-black button-search" form="searchForm"
-
-                                ng-click="vm.submitForm()">Search flights
-                        </button>
-                    </div>
-                </form>
+    <div ng-if="true">
+        <div class="form-list" ng-repeat="row in vm.listPlaneData">
+            <div class="form-list-header">
+                <a href="#" class="btn btn-default btn-primary elm-left" ng-bind="row.rank"></a>
+                <span class="price" ng-bind="row.time"></span>
+                <span class="price" ng-bind="row.cost + ' VND'"></span>
+                <a href="#" class="btn btn-default btn-default elm-right" ng-click="vm.pickPlane(row)"><span
+                        class="glyphicon glyphicon-info-sign"></span> Details</a>
+                <a href="#" class="btn btn-default btn-success elm-right">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span ng-bind="row.amountSeat"></span>
+                </a>
             </div>
-        </section>
-    </form>
+        </div>
+    </div>
 </div>
