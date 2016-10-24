@@ -77,7 +77,7 @@
 
                             <div id="returnOneWayIndicator" class="icon-arrow-search">
                                 <span class="icon-arrow"></span>
-                                <span class="icon-arrow reverse"></span>
+                                <span class="icon-arrow reverse" ng-if="vm.search.isReturn === 'true'"></span>
                             </div>
 
                             <div class="search-place search-placeTo" style="float: right!important;"
@@ -104,6 +104,7 @@
                                            datetime-picker="MM/dd/yyyy HH:mm"
                                            ng-model="vm.search.datetimePlaneGo.date" is-open="vm.search.datetimePlaneGo.open"
                                            datepicker-options="vm.search.datetimePlaneGo.datepickerOptions"
+                                           timepicker-options="vm.search.datetimePlaneGo.timepickerOptions"
                                            placeholder="Chọn thời gian đi" required/>
                                     <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="vm.openCalendar(vm.search.datetimePlaneGo)">
@@ -156,11 +157,12 @@
                             <div class="field-datetime btn-height"
                                  ng-class="{'has-error': (searchForm.datetime.$invalid && searchForm.datetime.$touched)}">
 
-                                <p class="input-group">
+                                <p class="input-group" ng-if="vm.search.isReturn === 'true'">
                                     <input type="text" name="datetimeBack" class="form-control"
                                            datetime-picker="MM/dd/yyyy HH:mm"
                                            ng-model="vm.search.datetimePlaneBack.date" is-open="vm.search.datetimePlaneBack.open"
                                            datepicker-options="vm.search.datetimePlaneBack.datepickerOptions"
+                                           timepicker-options="vm.search.datetimePlaneBack.timepickerOptions"
                                            placeholder="Chọn thời gian về" required/>
                                     <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="vm.openCalendar(vm.search.datetimePlaneBack)">
@@ -171,8 +173,8 @@
                             </div>
 
                             <div class="field-datetime radio">
-                                <label class="one-way"><input type="radio" name="optradio" checked="true">One way</label>
-                                <label class="field-return"><input type="radio" name="optradio">Return</label>
+                                <label class="one-way"><input type="radio" ng-model="vm.search.isReturn" value="false" name="optradio">One way</label>
+                                <label class="field-return"><input type="radio" ng-model="vm.search.isReturn" value="true" name="optradio">Return</label>
                             </div>
                         </div>
 

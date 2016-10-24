@@ -4,76 +4,106 @@ define(function (require) {
     var controller = [
         '$scope',
         '$http',
-        '$location',
+        '$uibModal',
+        '$timeout',
 
         function ($scope,
                   $http,
-                  $location) {
+                  $uibModal,
+                  $timeout) {
             var vm = this;
 
-            /**
-             * init
-             */
             function init() {
-                for (var i = 1; i <= 100; i++) {
-                    vm.amountSeatData.push(i);
-                }
-                // vm.placeData = $http.get('http://banvemaybay.apphb.com/api/airports');
+                $timeout(function () {
+                    vm.spinner = false;
+                    vm.list = true;
+                }, 2000)
             }
 
-            /**
-             * openCalendar
-             * @param e
-             * @param picker
-             */
-            function openCalendar() {
-                vm.openDatetimePicker = !vm.openDatetimePicker;
+            function addFlight() {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'home/templates/modal/addFlight.html',
+                    controller: 'addFlightController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        infoFlight: vm.row
+                    }
+                });
             }
 
-            /**
-             * submit form
-             */
-            function submitForm() {
-                $location.path('/booking');
+            function editRow() {
+                var modalInstance = $uibModal.open({
+                    templateUrl: 'home/templates/modal/addFlight.html',
+                    controller: 'addFlightController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        infoFlight: vm.row
+                    }
+                });
             }
 
-            vm.people = [
-                {name: 'Adam', id: 1},
-                {name: 'Amalie', id: 2},
-                {name: 'Estefanía', id: 3},
-                {name: 'Adrian', id: 4},
-                {name: 'Wladimir', id: 5},
-                {name: 'Samantha', id: 6},
-                {name: 'Nicole', id: 7},
-                {name: 'Natasha', id: 8}
-            ];
-            vm.rankData = [
+            vm.listPlaneData = [
                 {
-                    'id': 'Y',
-                    'name': 'Phổ thông'
+                    'rank': 'Y',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:05 PM',
+                    'cost': '10000',
+                    'totalSeat': '100',
+                    'placeFrom': 'Ho Chi Minh',
+                    'placeTo': 'Ha Noi',
+                    'id': 'BL326',
+                    'price': 'E'
                 },
                 {
-                    'id': 'C',
-                    'name': 'Thương gia'
+                    'rank': 'Y',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:05 PM',
+                    'cost': '10000',
+                    'totalSeat': '100',
+                    'placeFrom': 'Ho Chi Minh',
+                    'placeTo': 'Ha Noi',
+                    'id': 'BL326',
+                    'price': 'E'
+                },
+                {
+                    'rank': 'Y',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:05 PM',
+                    'cost': '10000',
+                    'totalSeat': '100',
+                    'placeFrom': 'Ho Chi Minh',
+                    'placeTo': 'Ha Noi',
+                    'id': 'BL326',
+                    'price': 'E'
                 }
             ];
-            vm.priceData = [
-                {
-                    'id': 'E'
+            vm.row = {
+                rank: 'Y',
+                amountSeat: '40',
+                datetime: {
+                    date: new Date()
                 },
-                {
-                    'id': 'F'
-                },
-                {
-                    'id': 'G'
-                }
-            ];
-            vm.amountSeatData = [];
-            vm.openDatetimePicker = false;
+                cost: '10000',
+                totalSeat: '100',
+                placeFrom: 'Ho Chi Minh',
+                placeTo: 'Ha Noi',
+                id: 'BL326',
+                price: 'E'
+            }
+
+            vm.spinner = true;
+            vm.list = false;
 
             vm.init = init;
-            vm.submitForm = submitForm;
-            vm.openCalendar = openCalendar;
+            vm.addFlight = addFlight;
+            vm.editRow = editRow;
         }];
     return controller;
 });

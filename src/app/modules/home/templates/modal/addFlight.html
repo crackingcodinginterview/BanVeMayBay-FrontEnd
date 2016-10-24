@@ -1,0 +1,88 @@
+<div class="form-group" ng-init="vm.init()">
+    <form name="$form" ng-submit="vm.ok($form)">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="vm.close()">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title" style="color: black">
+                <span>Thông tin chi tiết chuyến bay</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Mã chuyến bay</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.id" type="text" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Mã sân bay đi</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.placeFrom.code" type="text" required>
+                        </div>
+                        <label class="col-md-2 control-label center-center">Tên sân bay đi</label>
+                        <div class="col-md-6">
+                            <input class="form-control" ng-model="vm.infoFlight.placeFrom.name" type="text" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Mã sân bay đến</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.placeTo.code" type="text" required>
+                        </div>
+                        <label class="col-md-2 control-label center-center">Tên sân bay đến</label>
+                        <div class="col-md-6">
+                            <input class="form-control" ng-model="vm.infoFlight.placeTo.name" type="text" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Ngày giờ bay</label>
+                        <div class="col-md-4">
+                            <p class="input-group">
+                                <input type="text" class="form-control" datetime-picker="MM/dd/yyyy HH:mm"
+                                       ng-model="vm.infoFlight.datetime.date" is-open="vm.datetime.open"
+                                       datepicker-options="vm.datetime.datepickerOptions" required/>
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"
+                                        ng-click="vm.openCalendar(vm.datetime)">
+                                  <i class="fa fa-calendar"></i>
+                                </button>
+                            </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Hạng vé</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.rank" type="text" required>
+                        </div>
+                        <label class="col-md-2 control-label center-center">Mức giá</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.price" type="text" required>
+                        </div>
+                    </div>
+                    <div class="col-md-12 margin-bot-small">
+                        <label class="col-md-2 control-label center-center">Tổng lượng ghế</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.totalSeat" type="text" required>
+                        </div>
+                        <label class="col-md-2 control-label center-center">Giá vé (VND)</label>
+                        <div class="col-md-2">
+                            <input class="form-control" ng-model="vm.infoFlight.cost" type="text" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default btn-sm" type="button" ng-click="vm.close()">Đóng</button>
+            <button class="btn btn-success btn-sm" type="submit" ng-disabled="$form.$invalid || $form.$submitted"
+                    ng-hide="vm.disabledEdit">
+                Lưu
+            </button>
+        </div>
+    </form>
+</div>
+
