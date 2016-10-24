@@ -62,16 +62,13 @@
   font-size: 20px;
 }
 
-.form-list, .form-list-header {
-}
-
 @media only screen and (max-width: 900px) {
   .form-list {
     background-position: -0px -0px;
     margin: auto;
     margin-top: 20px;
     width: 450px;
-    height: 45px;
+    height: 46px;
     zoom: 70%;
   }
 }
@@ -82,7 +79,7 @@
     margin: auto;
     margin-top: 20px;
     width: 45%;
-    height: 45px;
+    height: 46px;
   }
 }
 
@@ -212,4 +209,8 @@
   color: #fff;
   border: 0px!important;
   background-color: #2B2B2B
+}
+
+.btn-height {
+  height: 33px!important;
 }

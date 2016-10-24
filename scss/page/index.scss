@@ -2747,7 +2747,7 @@ body {
   color: #fff;
   font-family: "canada-type-gibson", Tahoma, Helvetica, sans-serif;
   font-weight: 400;
-  min-width: 320px;
+  min-width: 500px;
   background-attachment: scroll !important
 }
 
@@ -9647,12 +9647,14 @@ a.cfui-button-default.working:after {
 
 .field-datetime {
   width: 31%;
+  margin-bottom: 10px;
   margin-right: 2%;
   float: left;
 }
 
 .field-rank, .field-price, .field-amount-seat {
   width: 21%;
+  margin-bottom: 10px;
   margin-right: 2%
 }
 

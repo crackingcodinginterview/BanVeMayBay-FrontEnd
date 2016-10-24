@@ -54,7 +54,7 @@
             </li>
         </ul>
 
-        <form name="vm.searchForm" id="searchForm" class="form-search" ng-init="vm.init()">
+        <form name="searchForm" id="searchForm" class="form-search" ng-init="vm.init()">
             <section class="product-forms">
                 <div class="content-container show" id="search-form">
 
@@ -62,15 +62,15 @@
 
                         <div class="group group-route">
                             <div class="search-place search-placeFrom"
-                                 ng-class="{'has-error': (vm.searchForm.placeFrom.$invalid && vm.searchForm.placeFrom.$dirty)}">
+                                 ng-class="{'has-error': (searchForm.placeFrom.$invalid && searchForm.placeFrom.$touched)}">
 
                                 <ui-select ng-model="vm.search.placeFrom" theme="bootstrap" name="placeFrom" required>
                                     <ui-select-match allow-clear="true" data-placeholder="Sân bay đi">
                                         {{$select.selected.name}}
                                     </ui-select-match>
                                     <ui-select-choices
-                                            repeat="garment.id as garment in vm.people | filter: $select.search">
-                                        <span ng-bind-html="garment.name | highlight: $select.search"></span>
+                                            repeat="plane in vm.listFlight | filter: $select.search">
+                                        <span ng-bind-html="plane.name | highlight: $select.search"></span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
@@ -81,40 +81,40 @@
                             </div>
 
                             <div class="search-place search-placeTo" style="float: right!important;"
-                                 ng-class="{'has-error': (vm.searchForm.placeTo.$invalid && vm.searchForm.placeTo.$dirty)}">
+                                 ng-class="{'has-error': (searchForm.placeTo.$invalid && searchForm.placeTo.$touched)}">
 
                                 <ui-select ng-model="vm.search.placeTo" theme="bootstrap" name="placeTo" required>
                                     <ui-select-match allow-clear="true" data-placeholder="Sân bay đến">
                                         {{$select.selected.name}}
                                     </ui-select-match>
                                     <ui-select-choices
-                                            repeat="garment.id as garment in vm.people | filter: $select.search">
-                                        <span ng-bind-html="garment.name | highlight: $select.search"></span>
+                                            repeat="plane in vm.listFlight | filter: $select.search">
+                                        <span ng-bind-html="plane.name | highlight: $select.search"></span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
                         </div>
 
                         <div class="group group-route">
-                            <div class="field field-datetime populated"
-                                 ng-class="{'has-error': (vm.searchForm.datetime.$invalid && vm.searchForm.datetime.$dirty)}">
+                            <div class="field-datetime btn-height"
+                                 ng-class="{'has-error': (searchForm.datetime.$invalid && searchForm.datetime.$touched)}">
 
                                 <p class="input-group">
-                                    <input type="text" name="datetime" class="form-control"
+                                    <input type="text" name="datetimeGo" class="form-control"
                                            datetime-picker="MM/dd/yyyy HH:mm"
-                                           ng-model="vm.search.datetimePlane" is-open="vm.openDatetimePicker"
-                                           datepicker-options="vm.datepickerOptions"
-                                           placeholder="Chọn thời gian" required/>
+                                           ng-model="vm.search.datetimePlaneGo.date" is-open="vm.search.datetimePlaneGo.open"
+                                           datepicker-options="vm.search.datetimePlaneGo.datepickerOptions"
+                                           placeholder="Chọn thời gian đi" required/>
                                     <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="vm.openCalendar()">
+                                <button type="button" class="btn btn-default" ng-click="vm.openCalendar(vm.search.datetimePlaneGo)">
                                     <i class="fa fa-calendar"></i>
                                  </button>
                              </span>
                                 </p>
                             </div>
 
-                            <div class="field field-rank populated"
-                                 ng-class="{'has-error': (vm.searchForm.rank.$invalid && vm.searchForm.rank.$dirty)}">
+                            <div class="field-rank populated btn-height"
+                                 ng-class="{'has-error': (searchForm.rank.$invalid && searchForm.rank.$touched)}">
 
                                 <ui-select ng-model="vm.search.rankId" name="rank" theme="bootstrap" required>
                                     <ui-select-match allow-clear="true" data-placeholder="Hạng vé">
@@ -126,8 +126,8 @@
                                 </ui-select>
                             </div>
 
-                            <div class="field field-price populated"
-                                 ng-class="{'has-error': (vm.searchForm.price.$invalid && vm.searchForm.price.$dirty)}">
+                            <div class="field-price populated btn-height"
+                                 ng-class="{'has-error': (searchForm.price.$invalid && searchForm.price.$touched)}">
 
                                 <ui-select ng-model="vm.search.priceId" theme="bootstrap" name="price" required>
                                     <ui-select-match allow-clear="true" data-placeholder="Mức giá">
@@ -140,8 +140,8 @@
                                 </ui-select>
                             </div>
 
-                            <div class="field field-amount-seat populated"
-                                 ng-class="{'has-error': (vm.searchForm.amount.$invalid && vm.searchForm.amount.$dirty)}">
+                            <div class="field-amount-seat populated btn-height"
+                                 ng-class="{'has-error': (searchForm.amount.$invalid && searchForm.amount.$touched)}">
 
                                 <ui-select ng-model="vm.search.amountSeat" theme="bootstrap" name="amount" required>
                                     <ui-select-match allow-clear="true" placeholder="Số lượng ghế">
@@ -152,11 +152,36 @@
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
+
+                            <div class="field-datetime btn-height"
+                                 ng-class="{'has-error': (searchForm.datetime.$invalid && searchForm.datetime.$touched)}">
+
+                                <p class="input-group">
+                                    <input type="text" name="datetimeBack" class="form-control"
+                                           datetime-picker="MM/dd/yyyy HH:mm"
+                                           ng-model="vm.search.datetimePlaneBack.date" is-open="vm.search.datetimePlaneBack.open"
+                                           datepicker-options="vm.search.datetimePlaneBack.datepickerOptions"
+                                           placeholder="Chọn thời gian về" required/>
+                                    <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="vm.openCalendar(vm.search.datetimePlaneBack)">
+                                    <i class="fa fa-calendar"></i>
+                                 </button>
+                             </span>
+                                </p>
+                            </div>
+
+                            <div class="field-datetime radio">
+                                <label class="one-way"><input type="radio" name="optradio" checked="true">One way</label>
+                                <label class="field-return"><input type="radio" name="optradio">Return</label>
+                            </div>
                         </div>
+
+
+
 
                         <div class="group group-buttons">
                             <button type="submit" class="btn btn-success btn-black button-search" form="searchForm"
-                                    ng-click="vm.submitForm()">Search flights
+                                    ng-click="vm.submitForm()" ng-disabled="searchForm.$invalid">Search flights
                             </button>
                         </div>
                     </form>

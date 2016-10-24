@@ -55,7 +55,7 @@
 
         <div class="search-info">
             <input type="text" class="form-control" ng-model="vm.idBook" placeholder="Mã đặt chỗ">
-            <a ng-click="vm.searchInfo()" class="btn btn-default btn-search">Tìm kiếm</a>
+            <button ng-click="vm.searchInfo()" class="btn btn-default btn-search" ng-disabled="!vm.idBook">Tìm kiếm</button>
         </div>
     </div>
 </div>
