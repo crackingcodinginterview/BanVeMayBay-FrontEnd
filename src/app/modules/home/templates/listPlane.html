@@ -57,20 +57,20 @@
         <div class="form-group filter-header">
             <div class="input-group filter-zone">
                 <span class="filter-places filter-place-from">
-                    <span class="filter-font">SGN</span><br/>
-                    <span class="font-color-white">Ho Chi Minh City</span>
+                    <span class="filter-font" ng-bind="vm.param.placeFrom.code"></span><br/>
+                    <span class="font-color-white" ng-bind="vm.param.placeFrom.name"></span>
                 </span>
                 <span class="filter-arrow">
                     <i class="icon-left"></i>
                     <i class="icon-right"></i>
                 </span>
                 <span class="filter-places filter-place-to">
-                    <span class="filter-font">SGN</span><br/>
-                    <span class="font-color-white">Ho Chi Minh City</span>
+                    <span class="filter-font" ng-bind="vm.param.placeTo.code"></span><br/>
+                    <span class="font-color-white" ng-bind="vm.param.placeTo.name"></span>
                 </span>
                 <span class="filter-places border-left">
                     <span class="filter-font">OUT</span><br/>
-                    <span class="font-color-white" ng-bind="vm.datetimePlane"></span>
+                    <span class="font-color-white" ng-bind="vm.param.datetimePlaneGo.toDateString()"></span>
                 </span>
                 <span class="filter-places border-left" style="padding-top: 23px">
                     <span class="fa fa-pencil filter-font"></span>

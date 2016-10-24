@@ -17,7 +17,11 @@ define(function (require) {
              * init
              */
             function init() {
-                debugger;
+                //Get list data flight
+                $http.get('http://banvemaybay.apphb.com/api/airports').then(function (response) {
+                    vm.listFlight = response.data;
+                });
+
                 if ($stateParams.param) {
                     vm.search = $stateParams.param;
                 }
@@ -27,14 +31,9 @@ define(function (require) {
                 // vm.placeData = $http.get('http://banvemaybay.apphb.com/api/airports');
             }
 
-            /**
-             * openCalendar
-             * @param e
-             * @param picker
-             */
-            function openCalendar() {
-                vm.openDatetimePicker = !vm.openDatetimePicker;
-            }
+            vm.openCalendar = function (picker) {
+                picker.open = !picker.open;
+            };
 
             /**
              * submit form
@@ -76,23 +75,57 @@ define(function (require) {
             ];
 
             vm.search = {
-                'placeFrom': '',
-                'placeTo': '',
-                'datetimePlane': '',
-                'rankId': '',
-                'priceId': '',
-                'amount': ''
+                placeFrom: '',
+                placeTo: '',
+                datetimePlaneGo: {
+                    date: '',
+                    datepickerOptions: {
+                        maxDate: null
+                    },
+                    open: false
+                },
+                datetimePlaneBack: {
+                    date: '',
+                    datepickerOptions: {
+                        minDate: null
+                    },
+                    open: false
+                },
+                rankId: '',
+                priceId: '',
+                amount: ''
             };
 
             vm.amountSeatData = [];
-            vm.openDatetimePicker = false;
-            vm.datepickerOptions = {
-                minDate: new Date()
-            };
+            vm.openDatetimePicker1 = false;
+            vm.openDatetimePicker2 = false;
+            vm.datepickerOptions = {};
 
             vm.init = init;
             vm.submitForm = submitForm;
-            vm.openCalendar = openCalendar;
+
+            // watch min and max dates to calculate difference
+            var unwatchMinMaxValues = $scope.$watch(function () {
+                return [vm.search.datetimePlaneGo, vm.search.datetimePlaneBack];
+            }, function () {
+                // min max dates
+                vm.search.datetimePlaneGo.datepickerOptions.maxDate = vm.search.datetimePlaneBack.date;
+                vm.search.datetimePlaneBack.datepickerOptions.minDate = vm.search.datetimePlaneGo.date;
+
+                if (vm.search.datetimePlaneGo.date && vm.search.datetimePlaneBack.date) {
+                    debugger;
+                    var diff = vm.search.datetimePlaneGo.date.getTime() - vm.search.datetimePlaneBack.date.getTime();
+                    vm.dayRange = Math.round(Math.abs(diff / (1000 * 60 * 60 * 24)))
+                } else {
+                    vm.dayRange = 'n/a';
+                }
+            }, true);
+
+
+            // destroy watcher
+            $scope.$on('$destroy', function () {
+                unwatchMinMaxValues();
+            });
         }];
     return controller;
 });

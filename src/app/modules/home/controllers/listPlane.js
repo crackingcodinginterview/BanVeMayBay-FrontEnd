@@ -46,16 +46,40 @@ define(function (require) {
             }
 
             function editSearch() {
-                $state.go('base.search', {param: param});
+                $state.go('base.search', {param: vm.param});
             }
 
-            vm.datetimePlane = new Date();
-            vm.datetimePlane = vm.datetimePlane.toDateString();
+            vm.datetimePlaneGo = new Date();
+            vm.datetimePlaneGo = vm.datetimePlaneGo.toDateString();
             vm.listPlaneData = [
                 {
                     'rank': 'Y',
                     'amountSeat': '40',
-                    'date': vm.datetimePlane,
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:05 PM',
+                    'cost': '10000',
+                    'totalSeat': '100',
+                    'placeFrom': 'Ho Chi Minh',
+                    'placeTo': 'Ha Noi',
+                    'id': 'BL326',
+                    'price': 'E'
+                },
+                {
+                    'rank': 'Y',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:05 PM',
+                    'cost': '10000',
+                    'totalSeat': '100',
+                    'placeFrom': 'Ho Chi Minh',
+                    'placeTo': 'Ha Noi',
+                    'id': 'BL326',
+                    'price': 'E'
+                },
+                {
+                    'rank': 'Y',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
                     'time': '6:05 PM',
                     'cost': '10000',
                     'totalSeat': '100',
@@ -67,8 +91,7 @@ define(function (require) {
             ];
             vm.spinner = true;
             vm.list = false;
-            var param = $stateParams.param;
-            debugger;
+            vm.param = $stateParams.param;
 
             vm.init = init;
             vm.pickPlane = pickPlane;
