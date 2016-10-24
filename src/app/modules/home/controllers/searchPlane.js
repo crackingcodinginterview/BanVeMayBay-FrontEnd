@@ -28,19 +28,26 @@ define(function (require) {
                 for (var i = 1; i <= 100; i++) {
                     vm.amountSeatData.push(i);
                 }
-                // vm.placeData = $http.get('http://banvemaybay.apphb.com/api/airports');
             }
-
-            vm.openCalendar = function (picker) {
-                picker.open = !picker.open;
-            };
 
             /**
              * submit form
              */
             function submitForm() {
                 $state.go('base.list', {param: vm.search});
-            }
+            };
+
+            function removePlane(planeCode) {
+                _.forEach(vm.listPlaneData, function (o) {
+                    if (o.code === planeCode) {
+                        vm.listPlaneData = _.remove(o, {'code': planeCode});
+                    }
+                });
+            };
+
+            vm.openCalendar = function (picker) {
+                picker.open = !picker.open;
+            };
 
             vm.people = [
                 {name: 'Adam', id: 1},
@@ -80,7 +87,11 @@ define(function (require) {
                 datetimePlaneGo: {
                     date: '',
                     datepickerOptions: {
+                        minDate: new Date(),
                         maxDate: null
+                    },
+                    timepickerOptions: {
+                        max: null
                     },
                     open: false
                 },
@@ -89,11 +100,15 @@ define(function (require) {
                     datepickerOptions: {
                         minDate: null
                     },
+                    timepickerOptions: {
+                        min: null
+                    },
                     open: false
                 },
                 rankId: '',
                 priceId: '',
-                amount: ''
+                amount: '',
+                isReturn: 'false'
             };
 
             vm.amountSeatData = [];
@@ -103,6 +118,7 @@ define(function (require) {
 
             vm.init = init;
             vm.submitForm = submitForm;
+            vm.removePlane = removePlane;
 
             // watch min and max dates to calculate difference
             var unwatchMinMaxValues = $scope.$watch(function () {
@@ -113,12 +129,15 @@ define(function (require) {
                 vm.search.datetimePlaneBack.datepickerOptions.minDate = vm.search.datetimePlaneGo.date;
 
                 if (vm.search.datetimePlaneGo.date && vm.search.datetimePlaneBack.date) {
-                    debugger;
                     var diff = vm.search.datetimePlaneGo.date.getTime() - vm.search.datetimePlaneBack.date.getTime();
                     vm.dayRange = Math.round(Math.abs(diff / (1000 * 60 * 60 * 24)))
                 } else {
                     vm.dayRange = 'n/a';
                 }
+
+                // min max times
+                vm.search.datetimePlaneGo.timepickerOptions.max = vm.search.datetimePlaneBack.date;
+                vm.search.datetimePlaneBack.timepickerOptions.min = vm.search.datetimePlaneGo.date;
             }, true);
 
 
