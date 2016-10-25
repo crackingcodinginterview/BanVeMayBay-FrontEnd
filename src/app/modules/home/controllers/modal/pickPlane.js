@@ -32,6 +32,7 @@ define(function (require) {
                     return;
                 }
                 vm.bookDetail.status = 1;
+                vm.bookDetail.numSeatBook = vm.numSeatBook;
                 $http.put(appConstant.domain + '/api/reservationtickets/' + vm.bookDetail.id, vm.bookDetail).then(function(resp){
                     $uibModalInstance.close(resp.data);
                 }).catch(function(error){
@@ -53,7 +54,7 @@ define(function (require) {
             }
 
             function createUser() {
-                vm.totalPrice = Number(vm.bookDetail.numSeatBook) * Number(vm.selectedPlane.price);
+                vm.totalPrice = Number(vm.numSeatBook) * Number(vm.selectedPlane.price);
             }
 
             function getTotalTicket(ticketclassId){

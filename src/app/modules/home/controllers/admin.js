@@ -20,6 +20,11 @@ define(function (require) {
                 }, 2000)
             }
 
+            function removeRow(row) {
+                var index = vm.listPlaneData.indexOf(row);
+                vm.listPlaneData.splice(index, 1);
+            }
+
             function addFlight() {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'home/templates/modal/addFlight.html',
@@ -30,6 +35,12 @@ define(function (require) {
                     resolve: {
                         infoFlight: vm.row
                     }
+                });
+
+                modalInstance.result.then(function (resp) {
+                    vm.listPlaneData.push(resp);
+                }, function () {
+
                 });
             }
 
@@ -44,18 +55,49 @@ define(function (require) {
                         infoFlight: vm.row
                     }
                 });
+
+                modalInstance.result.then(function (resp) {
+                   vm.listPlaneData.push(resp);
+                }, function () {
+
+                });
             }
 
+            vm.datetimePlaneGo = new Date();
             vm.listPlaneData = [
                 {
+                    'rank': 'E',
+                    'amountSeat': '40',
+                    'date': vm.datetimePlaneGo,
+                    'time': '6:00 PM',
+                    'cost': '100000',
+                    'totalSeat': '100',
+                    'placeFrom': {
+                        name: 'Ho Chi Minh',
+                        code: 'HCM'
+                    } ,
+                    'placeTo': {
+                        name: 'Tan Son Nhat',
+                        code: 'TSN'
+                    } ,
+                    'id': 'BL325',
+                    'price': 'E'
+                },
+                {
                     'rank': 'Y',
                     'amountSeat': '40',
                     'date': vm.datetimePlaneGo,
                     'time': '6:05 PM',
-                    'cost': '10000',
+                    'cost': '200000',
                     'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
+                    'placeFrom': {
+                        name: 'Ho Chi Minh',
+                        code: 'HCM'
+                    } ,
+                    'placeTo': {
+                        name: 'Noi Bai',
+                        code: 'NBN'
+                    } ,
                     'id': 'BL326',
                     'price': 'E'
                 },
@@ -66,21 +108,15 @@ define(function (require) {
                     'time': '6:05 PM',
                     'cost': '10000',
                     'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
-                    'id': 'BL326',
-                    'price': 'E'
-                },
-                {
-                    'rank': 'Y',
-                    'amountSeat': '40',
-                    'date': vm.datetimePlaneGo,
-                    'time': '6:05 PM',
-                    'cost': '10000',
-                    'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
-                    'id': 'BL326',
+                    'placeFrom': {
+                        name: 'Tan Son Nhat',
+                        code: 'TSN'
+                    } ,
+                    'placeTo': {
+                        name: 'Con dao',
+                        code: 'CDC'
+                    } ,
+                    'id': 'BL327',
                     'price': 'E'
                 }
             ];
@@ -92,8 +128,14 @@ define(function (require) {
                 },
                 cost: '10000',
                 totalSeat: '100',
-                placeFrom: 'Ho Chi Minh',
-                placeTo: 'Ha Noi',
+                placeFrom: {
+                    name: 'Ho Chi Minh',
+                    code: 'HCM'
+                } ,
+                placeTo: {
+                    name: 'Ha Noi',
+                    code: 'HAH'
+                } ,
                 id: 'BL326',
                 price: 'E'
             }
@@ -104,6 +146,7 @@ define(function (require) {
             vm.init = init;
             vm.addFlight = addFlight;
             vm.editRow = editRow;
+            vm.removeRow = removeRow;
         }];
     return controller;
 });

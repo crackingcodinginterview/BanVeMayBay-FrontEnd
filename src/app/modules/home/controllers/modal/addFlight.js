@@ -26,7 +26,7 @@ define(function (require) {
                     return;
                 }
 
-                $uibModalInstance.close();
+                $uibModalInstance.close(vm.infoFlight);
             }
 
             /**

@@ -4,7 +4,7 @@ define(function (require) {
     var angular = require('angular'),
         searchPlaneController = require('./controllers/searchPlane'),
         listPlaneController = require('./controllers/listPlane'),
-        bookingController = require('./controllers/booking'),
+        adminController = require('./controllers/admin'),
         searchInfoController = require('./controllers/searchInfo'),
         confirmController = require('./controllers/confirm'),
 
@@ -14,7 +14,7 @@ define(function (require) {
 
         searchPlaneTemplate = require('text!./templates/searchPlane.html'),
         listPlaneTemplate = require('text!./templates/listPlane.html'),
-        bookingTemplate = require('text!./templates/booking.html'),
+        adminTemplate = require('text!./templates/admin.html'),
         searchInfoTemplate = require('text!./templates/searchInfo.html'),
         confirmTemplate = require('text!./templates/confirm.html'),
 
@@ -29,7 +29,7 @@ define(function (require) {
         function ($templateCache) {
             $templateCache.put('home/templates/searchPlane.html', searchPlaneTemplate);
             $templateCache.put('home/templates/listPlane.html', listPlaneTemplate);
-            $templateCache.put('home/templates/booking.html', bookingTemplate);
+            $templateCache.put('home/templates/admin.html', adminTemplate);
             $templateCache.put('home/templates/searchInfo.html', searchInfoTemplate);
             $templateCache.put('home/templates/confirm.html', confirmTemplate);
             $templateCache.put('home/templates/modal/pickPlane.html', pickPlaneTemplate);
@@ -39,7 +39,7 @@ define(function (require) {
 
     module.controller('searchPlaneController', searchPlaneController);
     module.controller('listPlaneController', listPlaneController);
-    module.controller('bookingController', bookingController);
+    module.controller('adminController', adminController);
     module.controller('payController', searchInfoController);
     module.controller('confirmController', confirmController);
     module.controller('pickPlaneController', pickPlaneController);
@@ -87,12 +87,12 @@ define(function (require) {
                     }
                 }
             })
-            .state('base.booking', {
-                url: '/booking',
+            .state('base.admin', {
+                url: '/admin',
                 views: {
                     'main': {
-                        templateUrl: 'home/templates/booking.html',
-                        controller: bookingController,
+                        templateUrl: 'home/templates/admin.html',
+                        controller: adminController,
                         controllerAs: 'vm'
                     }
                 }
@@ -116,7 +116,7 @@ define(function (require) {
                     'main': {
                         templateUrl: 'home/templates/confirm.html',
                         controller: confirmController,
-                        controllerAs: 'vm',
+                        controllerAs: 'vm'
                     }
                 }
             });
