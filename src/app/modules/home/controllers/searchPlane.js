@@ -53,17 +53,6 @@ define(function (require) {
             vm.openCalendar = function (picker) {
                 picker.open = !picker.open;
             };
-
-            // vm.rankData = [
-            //     {
-            //         'id': 'Y',
-            //         'name': 'Phổ thông'
-            //     },
-            //     {
-            //         'id': 'C',
-            //         'name': 'Thương gia'
-            //     }
-            // ];
             vm.priceData = [
                 {
                     'id': 'E'

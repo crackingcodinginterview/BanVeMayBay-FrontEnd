@@ -12,6 +12,7 @@ define(function (require) {
         '$state',
         '$stateParams',
         'appConstant',
+        'moment',
 
         function ($scope,
                   $http,
@@ -20,12 +21,11 @@ define(function (require) {
                   $timeout,
                   $state,
                   $stateParams,
-                  appConstant) {
+                  appConstant,
+                  moment) {
             var vm = this;
-
             function init() {
                 vm.spinner = true;
-                vm.list = false;
                 vm.param = $stateParams.param;
                 vm.ticketclassData = angular.fromJson(ticketclassJson);
             }
@@ -35,10 +35,12 @@ define(function (require) {
             }
 
             function getBestFlightTicket(){
-                $http.get(appConstant.domain + '/api/flighttickets').then(function(resp){
-                    vm.listPlaneData = resp.data || [];
+                $http.get(appConstant.domain + '/api/flighttickets' + '?fromAirportId=' + vm.param.placeFrom.id + '&toAirportId=' + vm.param.placeTo.id + '&startDate=' + moment(vm.param.datetimePlaneGo.date).format('YYYY-MM-DDTHH:mm') + '&ticketclass=' + vm.param.rankId + '&numSeat=' + vm.param.amountSeat).then(function(resp){
+                    vm.listPlaneData = resp.data;
+                }).catch(function(error){
+                    vm.listPlaneData = null;
+                }).finally(function(){
                     vm.spinner = false;
-                    vm.list = true;
                 });
             }
 

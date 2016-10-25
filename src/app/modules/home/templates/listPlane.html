@@ -70,12 +70,12 @@
             </div>
         </div>
 
-        <div ng-if="vm.list">
-            <div class="form-list form-control" ng-repeat="row in vm.listPlaneData" ng-init="vm.initTime(row)">
+        <div ng-if="!vm.spinner">
+            <div ng-if="vm.listPlaneData" class="form-list form-control" ng-repeat="row in vm.listPlaneData">
                 <div class="form-list-header">
                     <a class="btn btn-default btn-primary elm-left" ng-bind="vm.getTicketclassString(row.ticketclass)"></a>
                     <span class="elm-left">&nbsp</span>
-                    <a class="btn btn-default" ng-bind="row.flight.timeTo"></a>
+                    <a class="btn btn-default" ng-bind="row.flight.time"></a>
                     <!--<a class="btn btn-default" ng-bind="row.flight.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'"></a>-->
                     <a class="btn btn-default" ng-bind="row.price + ' VND'"></a>
                     <a class="btn btn-default btn-default elm-right" ng-click="vm.pickPlane(row)"><span
@@ -86,6 +86,8 @@
                         <span ng-bind="row.numSeatAvailable"></span>
                     </a>
                 </div>
+            </div>
+            <div ng-if="!vm.listPlaneData" style="text-align: center;margin-top: 200px;font-size: 20px; font-weight: 600">Không Tìm Thấy Vé Máy Bay Phù Hợp
             </div>
         </div>
     </div>

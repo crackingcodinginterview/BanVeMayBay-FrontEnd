@@ -15,7 +15,7 @@ define(function(require){
     module.config(appConfig);
 
     module.constant('appConstant', {
-        domain: 'http://banvemaybay.apphb.com'
+        domain: 'https://banvemaybay.apphb.com'
     });
 
     return module.name;
