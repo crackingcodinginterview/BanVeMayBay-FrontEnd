@@ -13,7 +13,9 @@ define(function (require) {
         uiSelect = require('uiSelect'),
         uiBootstrap = require('uiBootstrap'),
         uiDateTimePiker = require('uiDateTimePiker'),
-        uiBootstrapTpls = require('uiBootstrapTpls');
+        uiBootstrapTpls = require('uiBootstrapTpls'),
+        angularMoment = require('angularMoment'),
+        angularLoadingBar = require('angularLoadingBar');
 
     var module = angular.module('app', [
         'ngAnimate',
@@ -24,6 +26,8 @@ define(function (require) {
         'ui.select',
         'ui.bootstrap',
         'ui.bootstrap.datetimepicker',
+        'angular-loading-bar',
+        'angularMoment',
 
         appConfig,
 

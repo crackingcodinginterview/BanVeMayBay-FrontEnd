@@ -54,7 +54,7 @@
             </li>
         </ul>
 
-        <form name="searchForm" id="searchForm" class="form-search" ng-init="vm.init()">
+        <form name="searchForm" id="searchForm" class="form-search">
             <section class="product-forms">
                 <div class="content-container show" id="search-form">
 
@@ -119,10 +119,10 @@
 
                                 <ui-select ng-model="vm.search.rankId" name="rank" theme="bootstrap" required>
                                     <ui-select-match allow-clear="true" data-placeholder="Hạng vé">
-                                        {{$select.selected.name}}
+                                        {{$select.selected.string}}
                                     </ui-select-match>
                                     <ui-select-choices repeat="rank.id as rank in vm.rankData | filter: $select.search">
-                                        <span ng-bind-html="rank.name | highlight: $select.search"></span>
+                                        <span ng-bind-html="rank.string | highlight: $select.search"></span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>

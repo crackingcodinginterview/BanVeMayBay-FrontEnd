@@ -1,0 +1,72 @@
+<div class="form-group">
+    <form name="$form">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="vm.close()">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h3 class="modal-title" style="color: black">
+                <span>Thông tin chi tiết phiếu đặt chỗ</span>
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Mã đặt chỗ</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.code"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Mã chuyến bay</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.flight.code"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Nơi đi</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.flight.startAirport.name"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Nơi đến</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.flight.endAirport.name"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Ngày đi</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.flight.time"></span>
+                        <label class="col-md-3 control-label">Giờ đi</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.flight.time"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Hạng vé</label>
+                        <span class="col-md-3" ng-bind="vm.getTicketclassString(vm.bookData.ticketclass)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body modal-border">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-md-3 control-label">Số lượng ghế</label>
+                        <span class="col-md-3" ng-bind="vm.bookData.numSeatBook"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            <label class="col-md-9 control-label">CMND</label>
+                            <span class="col-md-3" ng-bind="vm.bookData.customer.identityCode"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-9 control-label">Họ và tên</label>
+                            <span class="col-md-3" ng-bind="vm.bookData.customer.name"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-md-9 control-label">Số điện thoại</label>
+                            <span class="col-md-3" ng-bind="vm.bookData.customer.phone"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default btn-sm" type="button" ng-click="vm.close()">Đóng</button>
+        </div>
+    </form>
+</div>
+

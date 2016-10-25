@@ -1,0 +1,10 @@
+{
+  "PHOTHONG": {
+    "id": 0,
+    "string": "Phổ Thông"
+  },
+  "THUONGGIA": {
+    "id": 1,
+    "string": "Thương Gia"
+  }
+}

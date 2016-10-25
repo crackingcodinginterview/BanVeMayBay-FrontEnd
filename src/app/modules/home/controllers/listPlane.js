@@ -1,6 +1,8 @@
 define(function (require) {
     'use strict';
     var angular = require('angular');
+    var _ = require('lodash');
+    var ticketclassJson = require('text!src/app/common/resources/ticketclass.json');
     var controller = [
         '$scope',
         '$http',
@@ -9,6 +11,7 @@ define(function (require) {
         '$timeout',
         '$state',
         '$stateParams',
+        'appConstant',
 
         function ($scope,
                   $http,
@@ -16,14 +19,27 @@ define(function (require) {
                   $uibModal,
                   $timeout,
                   $state,
-                  $stateParams) {
+                  $stateParams,
+                  appConstant) {
             var vm = this;
 
             function init() {
-                $timeout(function () {
+                vm.spinner = true;
+                vm.list = false;
+                vm.param = $stateParams.param;
+                vm.ticketclassData = angular.fromJson(ticketclassJson);
+            }
+
+            function getTicketclassString(ticketclassId){
+                return _.find(vm.ticketclassData, {'id': ticketclassId}).string;
+            }
+
+            function getBestFlightTicket(){
+                $http.get(appConstant.domain + '/api/flighttickets').then(function(resp){
+                    vm.listPlaneData = resp.data || [];
                     vm.spinner = false;
                     vm.list = true;
-                }, 2000)
+                });
             }
 
             function pickPlane(row) {
@@ -34,12 +50,29 @@ define(function (require) {
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        selectedPlane: row
+                        selectedPlane: row,
+                        bookDetail: function($http, $q, appConstant){
+                            var defer = $q.defer();
+                            var text = "";
+                            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+                            for( var i=0; i < 6; i++ )
+                                text += possible.charAt(Math.floor(Math.random() * possible.length))
+                            var postData = {
+                                Code: text,
+                                Ticketclass: row.ticketclass,
+                                Flight: angular.copy(row.flight)
+                            };
+                            $http.post(appConstant.domain + '/api/reservationtickets', postData).then(function(resp){
+                                defer.resolve(resp.data);
+                            });
+                            return defer.promise;
+                        }
                     }
                 });
 
                 modalInstance.result.then(function (resp) {
-                    $location.path('/confirm');
+                    $state.go('base.confirm', { param: resp });
                 }, function () {
 
                 });
@@ -49,53 +82,12 @@ define(function (require) {
                 $state.go('base.search', {param: vm.param});
             }
 
-            vm.datetimePlaneGo = new Date();
-            vm.datetimePlaneGo = vm.datetimePlaneGo.toDateString();
-            vm.listPlaneData = [
-                {
-                    'rank': 'Y',
-                    'amountSeat': '40',
-                    'date': vm.datetimePlaneGo,
-                    'time': '6:05 PM',
-                    'cost': '10000',
-                    'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
-                    'id': 'BL326',
-                    'price': 'E'
-                },
-                {
-                    'rank': 'Y',
-                    'amountSeat': '40',
-                    'date': vm.datetimePlaneGo,
-                    'time': '6:05 PM',
-                    'cost': '10000',
-                    'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
-                    'id': 'BL326',
-                    'price': 'E'
-                },
-                {
-                    'rank': 'Y',
-                    'amountSeat': '40',
-                    'date': vm.datetimePlaneGo,
-                    'time': '6:05 PM',
-                    'cost': '10000',
-                    'totalSeat': '100',
-                    'placeFrom': 'Ho Chi Minh',
-                    'placeTo': 'Ha Noi',
-                    'id': 'BL326',
-                    'price': 'E'
-                }
-            ];
-            vm.spinner = true;
-            vm.list = false;
-            vm.param = $stateParams.param;
-
-            vm.init = init;
             vm.pickPlane = pickPlane;
             vm.editSearch = editSearch;
+            vm.getTicketclassString = getTicketclassString;
+
+            init();
+            getBestFlightTicket();
         }];
     return controller;
 });

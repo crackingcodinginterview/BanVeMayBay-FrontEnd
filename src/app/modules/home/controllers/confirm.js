@@ -7,46 +7,46 @@ define(function (require) {
         '$location',
         '$timeout',
         '$uibModal',
+        '$stateParams',
+        '$state',
+        'appConstant',
 
         function ($scope,
                   $http,
                   $location,
                   $timeout,
-                  $uibModal) {
+                  $uibModal,
+                  $stateParams,
+                  $state,
+                  appConstant) {
             var vm = this;
-
             /**
              * init
              */
             function init() {
+                vm.spinner = true;
+                vm.list = false;
                 $timeout(function () {
+                    vm.bookDetail = $stateParams.param;
                     vm.spinner = false;
-                    vm.list = true;
                 }, 2000)
             }
 
             function showDetail() {
-                var row = {};
-                row.idBook = "13CTT3";
-                row.disabledEdit = true;
-                row.user = {'amountSeat': '1'};
                 var modalInstance = $uibModal.open({
-                    templateUrl: 'home/templates/modal/pickPlane.html',
-                    controller: 'pickPlaneController',
+                    templateUrl: 'home/templates/modal/bookDetail.html',
+                    controller: 'bookDetailController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        selectedPlane: row
+                        bookData: vm.bookDetail
                     }
                 });
             }
-
-            vm.spinner = true;
-            vm.list = false;
-
-            vm.init = init;
             vm.showDetail = showDetail;
+
+            init();
         }];
     return controller;
 });

@@ -10,8 +10,7 @@ define(function (require) {
 
         pickPlaneController = require('./controllers/modal/pickPlane'),
         addFlightController = require('./controllers/modal/addFlight'),
-
-        // planeDetailDirective = require('./controllers/planeDetail'),
+        bookDetailController = require('./controllers/modal/bookDetail'),
 
         searchPlaneTemplate = require('text!./templates/searchPlane.html'),
         listPlaneTemplate = require('text!./templates/listPlane.html'),
@@ -20,9 +19,8 @@ define(function (require) {
         confirmTemplate = require('text!./templates/confirm.html'),
 
         pickPlaneTemplate = require('text!./templates/modal/pickPlane.html'),
-        addFlightTemplate = require('text!./templates/modal/addFlight.html');
-
-    // planeDetailContentTpl = require('text!./templates/planeDetail.html');
+        addFlightTemplate = require('text!./templates/modal/addFlight.html'),
+        bookDetailTemplate = require('text!./templates/modal/bookDetail.html');
 
     var module = angular.module('app.home', []);
 
@@ -36,7 +34,7 @@ define(function (require) {
             $templateCache.put('home/templates/confirm.html', confirmTemplate);
             $templateCache.put('home/templates/modal/pickPlane.html', pickPlaneTemplate);
             $templateCache.put('home/templates/modal/addFlight.html', addFlightTemplate);
-            // $templateCache.put('home/templates/planeDetail.html', planeDetailContentTpl);
+            $templateCache.put('home/templates/modal/bookDetail.html', bookDetailTemplate);
         }]);
 
     module.controller('searchPlaneController', searchPlaneController);
@@ -46,8 +44,8 @@ define(function (require) {
     module.controller('confirmController', confirmController);
     module.controller('pickPlaneController', pickPlaneController);
     module.controller('addFlightController', addFlightController);
+    module.controller('bookDetailController', bookDetailController);
 
-    // module.directive('planeDetailDirective', planeDetailDirective);
 
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
@@ -61,7 +59,18 @@ define(function (require) {
                     'main': {
                         templateUrl: 'home/templates/searchPlane.html',
                         controller: searchPlaneController,
-                        controllerAs: 'vm'
+                        controllerAs: 'vm',
+                        resolve: {
+                            listFlight: function($http, $q, appConstant){
+                                var defer = $q.defer();
+                                $http.get(appConstant.domain + '/api/airports').then(function(resp){
+                                    defer.resolve(resp.data);
+                                }).catch(function(){
+                                    defer.reject(resp.data);
+                                });
+                                return defer.promise;
+                            }
+                        }
                     }
                 }
             })
@@ -100,11 +109,14 @@ define(function (require) {
             })
             .state('base.confirm', {
                 url: '/confirm',
+                params: {
+                    param: null
+                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/confirm.html',
                         controller: confirmController,
-                        controllerAs: 'vm'
+                        controllerAs: 'vm',
                     }
                 }
             });
