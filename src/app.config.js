@@ -15,7 +15,7 @@ define(function(require){
     module.config(appConfig);
 
     module.constant('appConstant', {
-        domain: 'http://localhost:53980'
+        domain: 'http://banvemaybay.apphb.com'
     });
 
     return module.name;
