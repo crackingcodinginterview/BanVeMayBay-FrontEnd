@@ -40,7 +40,7 @@
                 <div class="selected">
                     <a href="/#/search" class="default-selected selected">
                         <span class="icon icon-plane-filled"></span>
-                        <span class="text">Flights</span>
+                        <span class="text">Tìm chuyến bay</span>
                     </a>
                 </div>
             </li>
@@ -48,7 +48,7 @@
                 <div class="selected">
                     <a href="/#/searchInfo">
                         <span class="icon fa fa-search"></span>
-                        <span class="text">Information</span>
+                        <span class="text">Xem thông tin vé</span>
                     </a>
                 </div>
             </li>
@@ -173,8 +173,8 @@
                             </div>
 
                             <div class="field-datetime radio">
-                                <label class="one-way"><input type="radio" ng-model="vm.search.isReturn" value="false" name="optradio">One way</label>
-                                <label class="field-return"><input type="radio" ng-model="vm.search.isReturn" value="true" name="optradio">Return</label>
+                                <label class="one-way"><input type="radio" ng-model="vm.search.isReturn" value="false" name="optradio">Một chiều</label>
+                                <label class="field-return"><input type="radio" ng-model="vm.search.isReturn" value="true" name="optradio">Khứ hồi</label>
                             </div>
                         </div>
 
@@ -183,7 +183,7 @@
 
                         <div class="group group-buttons">
                             <button type="submit" class="btn btn-success btn-black button-search" form="searchForm"
-                                    ng-click="vm.submitForm()" ng-disabled="searchForm.$invalid">Search flights
+                                    ng-click="vm.submitForm()" ng-disabled="searchForm.$invalid">Tìm chuyến bay
                             </button>
                         </div>
                     </form>
