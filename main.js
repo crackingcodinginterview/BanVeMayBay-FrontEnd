@@ -15,7 +15,10 @@ require.config({
         'uiRouter': 'empty:',
         'uiSelect': 'empty:',
         'ui.bootstrap': 'empty:',
-        'ui.bootstrap.datetimepicker': 'empty:'
+        'ui.bootstrap.datetimepicker': 'empty:',
+        'angularMoment': 'empty:',
+        'moment': 'empty:',
+        'angularLoadingBar': 'empty:'
     },
 
     shim: {},

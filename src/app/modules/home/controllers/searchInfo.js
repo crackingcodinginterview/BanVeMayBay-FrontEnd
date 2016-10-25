@@ -5,25 +5,31 @@ define(function (require) {
         '$scope',
         '$http',
         '$uibModal',
+        'appConstant',
 
         function ($scope,
                   $http,
-                  $uibModal) {
+                  $uibModal,
+                  appConstant) {
             var vm = this;
 
             function searchInfo() {
-                var row = {};
-                row.idBook = "13CTT3";
-                row.disabledEdit = true;
-                row.user = {'amountSeat': '1'};
                 var modalInstance = $uibModal.open({
-                    templateUrl: 'home/templates/modal/pickPlane.html',
-                    controller: 'pickPlaneController',
+                    templateUrl: 'home/templates/modal/bookDetail.html',
+                    controller: 'bookDetailController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        selectedPlane: row
+                        bookData: function($q, $http){
+                            var defer = $q.defer();
+                            $http.get(appConstant.domain + '/api/reservationtickets/' + vm.idBook).then(function(resp){
+                                defer.resolve(resp.data);
+                            }).catch(function(error){
+                                defer.reject();
+                            });
+                            return defer.promise;
+                        }
                     }
                 });
             }

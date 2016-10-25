@@ -1,26 +1,8 @@
 <div class="main">
-    <div id="header" class="header page-section" ng-init="vm.init()">
+    <div id="header" class="header page-section">
         <header>
             <!--Header-->
             <div id="page-header-placeholder">
-                <!--<div class="furniture-container">-->
-                <!--<div class="content-container clearfix" id="furniture">-->
-                <!--<section class="right">-->
-                <!--<a href="#">Sign up</a>-->
-                <!--<a href="#">Log in</a>-->
-                <!--<div id="locale-chooser" class="chooser show" style="float: right">-->
-                <!--<span class="cfui-flagorb site-icon cfus CFUS">&nbsp;</span>-->
-                <!--<label>-->
-                <!--<span class="codes">USD-$</span>-->
-                <!--</label>-->
-                <!--<span class="icon-down-triangle arrow"></span>-->
-                <!--<span class="vege-burger">-->
-                <!--<i class="icon-hamburger-01"></i>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--</section>-->
-                <!--</div>-->
-                <!--</div>-->
             </div>
 
             <!--Logo-->
@@ -91,16 +73,17 @@
         <div ng-if="vm.list">
             <div class="form-list form-control" ng-repeat="row in vm.listPlaneData">
                 <div class="form-list-header">
-                    <a class="btn btn-default btn-primary elm-left" ng-bind="row.rank"></a>
+                    <a class="btn btn-default btn-primary elm-left" ng-bind="vm.getTicketclassString(row.ticketclass)"></a>
                     <span class="elm-left">&nbsp</span>
-                    <a class="btn btn-default" ng-bind="row.time"></a>
-                    <a class="btn btn-default" ng-bind="row.cost + ' VND'"></a>
+                    <a class="btn btn-default" ng-bind="row.flight.time"></a>
+                    <!--<a class="btn btn-default" ng-bind="row.flight.time | amDateFormat:'dddd, MMMM Do YYYY, h:mm:ss a'"></a>-->
+                    <a class="btn btn-default" ng-bind="row.price + ' VND'"></a>
                     <a class="btn btn-default btn-default elm-right" ng-click="vm.pickPlane(row)"><span
                             class="glyphicon glyphicon-info-sign"></span> Details</a>
                     <span class="elm-right">&nbsp</span>
                     <a class="btn btn-default btn-success elm-right">
                         <span class="glyphicon glyphicon-user"></span>
-                        <span ng-bind="row.amountSeat"></span>
+                        <span ng-bind="row.numSeatAvailable"></span>
                     </a>
                 </div>
             </div>

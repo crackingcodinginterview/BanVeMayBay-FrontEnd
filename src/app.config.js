@@ -9,8 +9,14 @@ define(function(require){
             requireBase: false
         });
         $urlRouterProvider.otherwise('/search');
-    }
 
+
+    }
     module.config(appConfig);
+
+    module.constant('appConstant', {
+        domain: 'http://localhost:53980'
+    });
+
     return module.name;
 });

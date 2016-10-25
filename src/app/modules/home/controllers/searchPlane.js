@@ -1,26 +1,31 @@
 define(function (require) {
     'use strict';
     var angular = require('angular');
+    var _ = require('lodash');
+    var ticketclassJson = require('text!src/app/common/resources/ticketclass.json');
+
     var controller = [
         '$scope',
         '$http',
         '$state',
         '$stateParams',
+        'listFlight',
+        'appConstant',
 
         function ($scope,
                   $http,
                   $state,
-                  $stateParams) {
+                  $stateParams,
+                  listFlight,
+                  appConstant) {
             var vm = this;
-
             /**
              * init
              */
             function init() {
                 //Get list data flight
-                $http.get('http://banvemaybay.apphb.com/api/airports').then(function (response) {
-                    vm.listFlight = response.data;
-                });
+                vm.rankData = _.values(angular.fromJson(ticketclassJson));
+                vm.listFlight = listFlight;
 
                 if ($stateParams.param) {
                     vm.search = $stateParams.param;
@@ -49,26 +54,16 @@ define(function (require) {
                 picker.open = !picker.open;
             };
 
-            vm.people = [
-                {name: 'Adam', id: 1},
-                {name: 'Amalie', id: 2},
-                {name: 'Estefanía', id: 3},
-                {name: 'Adrian', id: 4},
-                {name: 'Wladimir', id: 5},
-                {name: 'Samantha', id: 6},
-                {name: 'Nicole', id: 7},
-                {name: 'Natasha', id: 8}
-            ];
-            vm.rankData = [
-                {
-                    'id': 'Y',
-                    'name': 'Phổ thông'
-                },
-                {
-                    'id': 'C',
-                    'name': 'Thương gia'
-                }
-            ];
+            // vm.rankData = [
+            //     {
+            //         'id': 'Y',
+            //         'name': 'Phổ thông'
+            //     },
+            //     {
+            //         'id': 'C',
+            //         'name': 'Thương gia'
+            //     }
+            // ];
             vm.priceData = [
                 {
                     'id': 'E'
@@ -116,7 +111,6 @@ define(function (require) {
             vm.openDatetimePicker2 = false;
             vm.datepickerOptions = {};
 
-            vm.init = init;
             vm.submitForm = submitForm;
             vm.removePlane = removePlane;
 
@@ -145,6 +139,8 @@ define(function (require) {
             $scope.$on('$destroy', function () {
                 unwatchMinMaxValues();
             });
+
+            init();
         }];
     return controller;
 });

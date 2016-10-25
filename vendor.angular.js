@@ -17,7 +17,10 @@ require.config({
         uiSelect: 'bower_components/angular-ui-select/dist/select',
         uiBootstrap: './bower_components/angular-bootstrap/ui-bootstrap',
         uiBootstrapTpls: './bower_components/angular-bootstrap/ui-bootstrap-tpls',
-        uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker'
+        uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker',
+        moment: './bower_components/moment/src/moment',
+        angularMoment: './bower_components/angular-moment/angular-moment',
+        angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar'
     },
     shim: {
         'angular': {
@@ -53,10 +56,16 @@ require.config({
         },
         'uiDateTimePiker': {
             deps: ['angular']
+        },
+        'angularMoment': {
+            deps: ['angular', 'moment']
+        },
+        'angularLoadingBar': {
+            deps: ['angular']
         }
     },
     exclude: [
-        'jquery'
+        'jquery',
     ],
     include: [
         'angular',
@@ -67,6 +76,9 @@ require.config({
         'uiRouter',
         'uiSelect',
         'ui.bootstrap',
-        'ui.bootstrap.datetimepicker'
+        'ui.bootstrap.datetimepicker',
+        'angularMoment',
+        'angularLoadingBar',
+        'moment'
     ]
 });
