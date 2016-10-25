@@ -18,7 +18,7 @@ require.config({
         uiBootstrap: './bower_components/angular-bootstrap/ui-bootstrap',
         uiBootstrapTpls: './bower_components/angular-bootstrap/ui-bootstrap-tpls',
         uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker',
-        moment: './bower_components/moment/src/moment',
+        moment: './bower_components/moment/moment',
         angularMoment: './bower_components/angular-moment/angular-moment',
         angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar'
     },
@@ -77,8 +77,8 @@ require.config({
         'uiSelect',
         'ui.bootstrap',
         'ui.bootstrap.datetimepicker',
+        'moment',
         'angularMoment',
         'angularLoadingBar',
-        'moment'
     ]
 });

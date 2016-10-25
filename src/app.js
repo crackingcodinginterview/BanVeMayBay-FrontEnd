@@ -14,6 +14,7 @@ define(function (require) {
         uiBootstrap = require('uiBootstrap'),
         uiDateTimePiker = require('uiDateTimePiker'),
         uiBootstrapTpls = require('uiBootstrapTpls'),
+        moment = require('moment'),
         angularMoment = require('angularMoment'),
         angularLoadingBar = require('angularLoadingBar');
 
@@ -34,6 +35,11 @@ define(function (require) {
         'app.base',
         'app.home'
     ]);
+
+    module.controller('AppController', [
+        function () {
+            window.moment = moment;
+        }]);
 
     return module;
 });
