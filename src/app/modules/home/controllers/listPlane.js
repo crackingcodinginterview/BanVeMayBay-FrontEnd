@@ -71,7 +71,6 @@ define(function (require) {
                             };
                             $http.post(appConstant.domain + '/api/reservationtickets', postData).then(function(resp){
                                 defer.resolve(resp.data);
-                                debugger;
                             });
                             return defer.promise;
                         }

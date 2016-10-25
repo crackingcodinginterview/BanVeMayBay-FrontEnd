@@ -56,7 +56,6 @@ define(function (require) {
                 }
             }
             vm.infoFlight = angular.copy(infoFlight);
-            debugger;
 
             vm.close = close;
             vm.ok = ok;
