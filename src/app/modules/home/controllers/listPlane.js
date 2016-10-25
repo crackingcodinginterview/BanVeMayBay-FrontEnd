@@ -42,6 +42,12 @@ define(function (require) {
                 });
             }
 
+            function initTime(row) {
+                row.flight.timeTo = row.flight.time.substr(11,5);
+                row.flight.dateTo = new Date(row.flight.time);
+                row.flight.dateTo = row.flight.dateTo.toDateString();
+            }
+
             function pickPlane(row) {
                 var modalInstance = $uibModal.open({
                     templateUrl: 'home/templates/modal/pickPlane.html',
@@ -65,6 +71,7 @@ define(function (require) {
                             };
                             $http.post(appConstant.domain + '/api/reservationtickets', postData).then(function(resp){
                                 defer.resolve(resp.data);
+                                debugger;
                             });
                             return defer.promise;
                         }
@@ -85,6 +92,7 @@ define(function (require) {
             vm.pickPlane = pickPlane;
             vm.editSearch = editSearch;
             vm.getTicketclassString = getTicketclassString;
+            vm.initTime = initTime;
 
             init();
             getBestFlightTicket();

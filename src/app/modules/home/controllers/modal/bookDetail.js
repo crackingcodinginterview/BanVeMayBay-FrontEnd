@@ -27,6 +27,9 @@ define(function (require) {
             function init() {
                 vm.ticketclassData = angular.fromJson(ticketclassJson);
                 vm.bookData = angular.copy(bookData);
+                vm.bookData.flight.timeTo = vm.bookData.flight.time.substr(11,5);
+                vm.bookData.flight.dateTo = new Date(vm.bookData.flight.time);
+                vm.bookData.flight.dateTo = vm.bookData.flight.dateTo.toDateString();
             }
 
             function getTicketclassString(ticketclassId){
