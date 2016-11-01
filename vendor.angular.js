@@ -15,12 +15,13 @@ require.config({
 
         uiRouter: 'bower_components/angular-ui-router/release/angular-ui-router',
         uiSelect: 'bower_components/angular-ui-select/dist/select',
-        uiBootstrap: './bower_components/angular-bootstrap/ui-bootstrap',
+        // angularBootstrap: './bower_components/angular-bootstrap/ui-bootstrap',
         uiBootstrapTpls: './bower_components/angular-bootstrap/ui-bootstrap-tpls',
-        uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker',
+        // uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker',
         moment: './bower_components/moment/moment',
         angularMoment: './bower_components/angular-moment/angular-moment',
-        angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar'
+        angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar',
+        ngAdmin: './bower_components/ng-admin/build/ng-admin.min'
     },
     shim: {
         'angular': {
@@ -48,19 +49,22 @@ require.config({
         'select2': {
             deps: ['jquery']
         },
-        'uiBootstrap': {
-            deps: ['angular']
-        },
+        // 'angularBootstrap': {
+        //     deps: ['angular']
+        // },
         'uiBootstrapTpls': {
             deps: ['angular']
         },
-        'uiDateTimePiker': {
-            deps: ['angular']
-        },
+        // 'uiDateTimePiker': {
+        //     deps: ['angular']
+        // },
         'angularMoment': {
             deps: ['angular', 'moment']
         },
         'angularLoadingBar': {
+            deps: ['angular']
+        },
+        'ngAdmin': {
             deps: ['angular']
         }
     },
@@ -75,10 +79,12 @@ require.config({
 
         'uiRouter',
         'uiSelect',
-        'ui.bootstrap',
-        'ui.bootstrap.datetimepicker',
+        'uiBootstrapTpls',
+        // 'angularBootstrap',
+        // 'ui.bootstrap.datetimepicker',
         'moment',
         'angularMoment',
         'angularLoadingBar',
+        'ngAdmin'
     ]
 });

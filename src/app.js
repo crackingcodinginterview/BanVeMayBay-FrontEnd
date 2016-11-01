@@ -11,12 +11,13 @@ define(function (require) {
 
         uiRouter = require('uiRouter'),
         uiSelect = require('uiSelect'),
-        uiBootstrap = require('uiBootstrap'),
-        uiDateTimePiker = require('uiDateTimePiker'),
+        // uiBootstrap = require('uiBootstrap'),
+        // uiDateTimePiker = require('uiDateTimePiker'),
         uiBootstrapTpls = require('uiBootstrapTpls'),
         moment = require('moment'),
         angularMoment = require('angularMoment'),
-        angularLoadingBar = require('angularLoadingBar');
+        angularLoadingBar = require('angularLoadingBar'),
+        ngAdmin = require('ngAdmin');
 
     var module = angular.module('app', [
         'ngAnimate',
@@ -26,9 +27,10 @@ define(function (require) {
         'ui.router',
         'ui.select',
         'ui.bootstrap',
-        'ui.bootstrap.datetimepicker',
+        // 'ui.bootstrap.datetimepicker',
         'angular-loading-bar',
         'angularMoment',
+        'ng-admin',
 
         appConfig,
 
