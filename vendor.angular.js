@@ -69,7 +69,7 @@ require.config({
         }
     },
     exclude: [
-        'jquery',
+        'jquery'
     ],
     include: [
         'angular',
