@@ -20,6 +20,9 @@ define(function (require) {
             var vm = this;
 
             function init() {
+                if (!vm.username) {
+                    $state.go('base.login');
+                }
                 $timeout(function () {
                     vm.spinner = false;
                     vm.list = true;

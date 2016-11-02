@@ -14,7 +14,8 @@ define(function (require) {
             var vm = this;
 
             function handleRequest(res) {
-                var token = res.data ? res.data.token : null;
+                //đừng có quan tâm cái này lam gì
+                var token = res.data ? res.data.access_token : null;
                 if (token) {
                     console.log('JWT:', token);
                     $state.go('base.admin', {param: vm.username});
@@ -23,7 +24,7 @@ define(function (require) {
             }
 
             vm.login = function () {
-                user.login1(vm.username, vm.password)
+                user.login(vm.username, vm.password)
                     .then(handleRequest, handleRequest);
             };
 

@@ -14,8 +14,8 @@ define(function(require){
     module.config(appConfig);
 
     module.constant('appConstant', {
-        // domain: 'https://banvemaybay.apphb.com'
-        domain: 'http://test-routes.herokuapp.com'
+        domain: 'https://banvemaybay.apphb.com'
+        // domain: 'http://test-routes.herokuapp.com'
     });
 
     return module.name;
