@@ -7,6 +7,8 @@ define(function (require) {
         adminController = require('./controllers/admin'),
         searchInfoController = require('./controllers/searchInfo'),
         confirmController = require('./controllers/confirm'),
+        loginController = require('./controllers/login'),
+        signupController = require('./controllers/signup'),
 
         pickPlaneController = require('./controllers/modal/pickPlane'),
         addFlightController = require('./controllers/modal/addFlight'),
@@ -17,6 +19,8 @@ define(function (require) {
         adminTemplate = require('text!./templates/admin.html'),
         searchInfoTemplate = require('text!./templates/searchInfo.html'),
         confirmTemplate = require('text!./templates/confirm.html'),
+        loginTemplate = require('text!./templates/loginForm.html'),
+        signupFormTemplate = require('text!./templates/signupForm.html'),
 
         pickPlaneTemplate = require('text!./templates/modal/pickPlane.html'),
         addFlightTemplate = require('text!./templates/modal/addFlight.html'),
@@ -32,6 +36,8 @@ define(function (require) {
             $templateCache.put('home/templates/admin.html', adminTemplate);
             $templateCache.put('home/templates/searchInfo.html', searchInfoTemplate);
             $templateCache.put('home/templates/confirm.html', confirmTemplate);
+            $templateCache.put('home/templates/loginForm.html', loginTemplate);
+            $templateCache.put('home/templates/signupForm.html', signupFormTemplate);
             $templateCache.put('home/templates/modal/pickPlane.html', pickPlaneTemplate);
             $templateCache.put('home/templates/modal/addFlight.html', addFlightTemplate);
             $templateCache.put('home/templates/modal/bookDetail.html', bookDetailTemplate);
@@ -45,6 +51,8 @@ define(function (require) {
     module.controller('pickPlaneController', pickPlaneController);
     module.controller('addFlightController', addFlightController);
     module.controller('bookDetailController', bookDetailController);
+    module.controller('loginController', loginController);
+    module.controller('signupController', signupController);
 
 
     config.$inject = ['$stateProvider'];
@@ -61,11 +69,11 @@ define(function (require) {
                         controller: searchPlaneController,
                         controllerAs: 'vm',
                         resolve: {
-                            listFlight: function($http, $q, appConstant){
+                            listFlight: function ($http, $q, appConstant) {
                                 var defer = $q.defer();
-                                $http.get(appConstant.domain + '/api/airports').then(function(resp){
+                                $http.get(appConstant.domain + '/api/airports').then(function (resp) {
                                     defer.resolve(resp.data);
-                                }).catch(function(){
+                                }).catch(function () {
                                     defer.reject(resp.data);
                                 });
                                 return defer.promise;
@@ -116,6 +124,32 @@ define(function (require) {
                     'main': {
                         templateUrl: 'home/templates/confirm.html',
                         controller: confirmController,
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('base.login', {
+                url: '/login',
+                params: {
+                    param: null
+                },
+                views: {
+                    'main': {
+                        templateUrl: 'home/templates/loginForm.html',
+                        controller: loginController,
+                        controllerAs: 'vm'
+                    }
+                }
+            })
+            .state('base.signup', {
+                url: '/signup',
+                params: {
+                    param: null
+                },
+                views: {
+                    'main': {
+                        templateUrl: 'home/templates/signupForm.html',
+                        controller: signupController,
                         controllerAs: 'vm'
                     }
                 }

@@ -17,7 +17,10 @@ define(function (require) {
         moment = require('moment'),
         angularMoment = require('angularMoment'),
         angularLoadingBar = require('angularLoadingBar'),
-        ngAdmin = require('ngAdmin');
+        ngAdmin = require('ngAdmin'),
+
+        common = require('./app/common/index');
+
 
     var module = angular.module('app', [
         'ngAnimate',
@@ -32,9 +35,14 @@ define(function (require) {
         'angularMoment',
         'ng-admin',
 
+        // Configuration
         appConfig,
 
+        // Common
+        common,
+
         'app.base',
+        'app.helpers',
         'app.home'
     ]);
 
