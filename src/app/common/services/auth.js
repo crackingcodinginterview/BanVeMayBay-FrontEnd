@@ -25,9 +25,9 @@ define(function (require) {
             };
 
             services.isAuthed = function () {
-                var token = self.getToken();
+                var token = services.getToken();
                 if (token) {
-                    var params = self.parseJwt(token);
+                    var params = services.parseJwt(token);
                     return Math.round(new Date().getTime() / 1000) <= params.exp;
                 } else {
                     return false;

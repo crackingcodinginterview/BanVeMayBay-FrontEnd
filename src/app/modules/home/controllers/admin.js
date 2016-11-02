@@ -6,11 +6,17 @@ define(function (require) {
         '$http',
         '$uibModal',
         '$timeout',
+        '$state',
+        '$stateParams',
+        'auth',
 
         function ($scope,
                   $http,
                   $uibModal,
-                  $timeout) {
+                  $timeout,
+                  $state,
+                  $stateParams,
+                  auth) {
             var vm = this;
 
             function init() {
@@ -62,6 +68,11 @@ define(function (require) {
 
                 });
             }
+
+            vm.logout = function () {
+                auth.logout && auth.logout();
+                $state.go('base.login');
+            };
 
             vm.datetimePlaneGo = new Date();
             vm.listPlaneData = [
@@ -138,10 +149,11 @@ define(function (require) {
                 } ,
                 id: 'BL326',
                 price: 'E'
-            }
+            };
 
             vm.spinner = true;
             vm.list = false;
+            vm.username = $stateParams.param;
 
             vm.init = init;
             vm.addFlight = addFlight;

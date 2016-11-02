@@ -11,13 +11,12 @@ define(function (require) {
 
         uiRouter = require('uiRouter'),
         uiSelect = require('uiSelect'),
-        // uiBootstrap = require('uiBootstrap'),
+        // uiBootstrap = require('uiBootstrap'),ss
         // uiDateTimePiker = require('uiDateTimePiker'),
         uiBootstrapTpls = require('uiBootstrapTpls'),
         moment = require('moment'),
         angularMoment = require('angularMoment'),
         angularLoadingBar = require('angularLoadingBar'),
-        ngAdmin = require('ngAdmin'),
 
         common = require('./app/common/index');
 
@@ -33,7 +32,6 @@ define(function (require) {
         // 'ui.bootstrap.datetimepicker',
         'angular-loading-bar',
         'angularMoment',
-        'ng-admin',
 
         // Configuration
         appConfig,
@@ -42,7 +40,6 @@ define(function (require) {
         common,
 
         'app.base',
-        'app.helpers',
         'app.home'
     ]);
 

@@ -19,8 +19,7 @@ require.config({
         'uiBootstrapTpls': 'empty:',
         'moment': 'empty:',
         'angularMoment': 'empty:',
-        'angularLoadingBar': 'empty:',
-        'ngAdmin': 'empty:'
+        'angularLoadingBar': 'empty:'
     },
 
     shim: {},
