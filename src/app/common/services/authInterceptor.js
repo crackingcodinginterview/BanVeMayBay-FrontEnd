@@ -25,6 +25,7 @@ define(function (require) {
 
             // If a token was sent back, save it
             services.response = function (res) {
+                debugger;
                 if(res.config.url.indexOf(appConstant.domain) === 0 && res.data.token) {
                     auth.saveToken(res.data.token);
                 }

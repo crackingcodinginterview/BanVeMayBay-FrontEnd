@@ -28,12 +28,29 @@ define(function (require) {
             };
 
             services.login = function (username, password) {
-                return $http.post(appConstant.domain + '/auth/login', {
+                return $http({
+                    method: 'POST',
+                    data: {
+                        grant_type: 'password',
+                        username: 'vominhquoc',
+                        password: 'user123456'
+                    },
+                    url: 'http://banvemaybay.apphb.com/oauth/token',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                });
+                // return $http.post(appConstant.domain + '/oauth/token', {
+                //     grant_type: 'password',
+                //     username: username,
+                //     password: password
+                // })
+            };
+
+            services.login1 = function (username, password) {
+                return $http.post('http://test-routes.herokuapp.com' + '/auth/login', {
                     username: username,
                     password: password
                 })
             };
-
             return services;
         }]);
     return module.name;

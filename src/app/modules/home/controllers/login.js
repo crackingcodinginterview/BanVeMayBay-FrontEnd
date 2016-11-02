@@ -2,34 +2,35 @@ define(function (require) {
     'use strict';
     var angular = require('angular');
     var controller = [
-        '$scope',
         '$http',
         'user',
         'auth',
+        '$state',
 
-        function ($scope,
-                  $http,
+        function ($http,
                   user,
-                  auth) {
+                  auth,
+                  $state) {
             var vm = this;
 
             function handleRequest(res) {
                 var token = res.data ? res.data.token : null;
                 if (token) {
                     console.log('JWT:', token);
+                    $state.go('base.admin', {param: vm.username});
                 }
                 vm.message = res.data.message;
             }
 
             vm.login = function () {
-                user.login(vm.username, vm.password)
+                user.login1(vm.username, vm.password)
                     .then(handleRequest, handleRequest);
             };
 
-            // vm.register = function () {
-            //     user.register(vm.username, vm.password)
-            //        .then(handleRequest, handleRequest);
-            // };
+            vm.register = function () {
+                user.register(vm.username, vm.password)
+                   .then(handleRequest, handleRequest);
+            };
 
             vm.getQuote = function () {
                 user.getQuote()
@@ -42,7 +43,8 @@ define(function (require) {
                 return auth.isAuthed ? auth.isAuthed() : false
             };
 
-            vm.message = '';
+            vm.logout();
+            vm.loginSuccess = false;
         }];
     return controller;
 });

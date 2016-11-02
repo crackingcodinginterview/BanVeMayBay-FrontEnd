@@ -20,8 +20,7 @@ require.config({
         // uiDateTimePiker: './bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker',
         moment: './bower_components/moment/moment',
         angularMoment: './bower_components/angular-moment/angular-moment',
-        angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar',
-        ngAdmin: './bower_components/ng-admin/build/ng-admin.min'
+        angularLoadingBar: './bower_components/angular-loading-bar/build/loading-bar'
     },
     shim: {
         'angular': {
@@ -63,9 +62,6 @@ require.config({
         },
         'angularLoadingBar': {
             deps: ['angular']
-        },
-        'ngAdmin': {
-            deps: ['angular']
         }
     },
     exclude: [
@@ -84,7 +80,6 @@ require.config({
         // 'ui.bootstrap.datetimepicker',
         'moment',
         'angularMoment',
-        'angularLoadingBar',
-        'ngAdmin'
+        'angularLoadingBar'
     ]
 });

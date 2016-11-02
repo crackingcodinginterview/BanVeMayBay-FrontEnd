@@ -97,6 +97,9 @@ define(function (require) {
             })
             .state('base.admin', {
                 url: '/admin',
+                params: {
+                    param: null
+                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/admin.html',
@@ -130,9 +133,6 @@ define(function (require) {
             })
             .state('base.login', {
                 url: '/login',
-                params: {
-                    param: null
-                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/loginForm.html',
@@ -143,9 +143,6 @@ define(function (require) {
             })
             .state('base.signup', {
                 url: '/signup',
-                params: {
-                    param: null
-                },
                 views: {
                     'main': {
                         templateUrl: 'home/templates/signupForm.html',
